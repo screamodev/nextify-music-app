@@ -24,6 +24,9 @@
     "react/jsx-indent": "off",
     "quotes": "off",
     "react/jsx-tag-spacing": "off",
-    "comma-dangle": "off"
+    "comma-dangle": "off",
+    "react/jsx-wrap-multilines": "off",
+    "react/jsx-closing-tag-location": "off",
+    "indent": "off"
   }
 }
