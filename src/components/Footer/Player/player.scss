@@ -1,0 +1,11 @@
+.player {
+  @apply h-full flex justify-center;
+
+  &-controls {
+    @apply flex;
+  }
+
+  .play-toggle-button-icon {
+    @apply h-8 w-8 text-white;
+  }
+}
