@@ -27,6 +27,18 @@
     "comma-dangle": "off",
     "react/jsx-wrap-multilines": "off",
     "react/jsx-closing-tag-location": "off",
-    "indent": "off"
+    "indent": "off",
+    "react/button-has-type": "off",
+    "import/prefer-default-export": "off",
+    "spaced-comment": "off",
+    "no-unused-expressions": "off",
+    "no-debugger": "off",
+    "react/jsx-no-constructed-context-values": "off",
+    "react/prop-types": "off",
+    "operator-linebreak": "off",
+    "arrow-body-style": "off",
+    "no-return-assign": "off",
+    "no-param-reassign": "off",
+    "yoda": "off"
   }
 }
