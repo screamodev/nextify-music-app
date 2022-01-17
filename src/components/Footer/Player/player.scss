@@ -1,0 +1,23 @@
+.player {
+  @apply h-full flex justify-center;
+
+  &-controls {
+    @apply flex flex-col;
+
+    .controls-buttons {
+      @apply flex justify-center;
+    }
+
+    .controls-progress-bar-holder {
+      @apply flex text-white items-center justify-between text-xs;
+
+      .controls-progress-bar {
+        @apply w-60 h-1 mx-2 placeholder-red-300;
+      }
+    }
+  }
+
+  .play-toggle-button-icon {
+    @apply h-8 w-8 text-white;
+  }
+}
