@@ -2,9 +2,11 @@ import { useEffect, useRef, useState } from "react";
 
 export function usePlayer(url) {
   const [isPlaying, setIsPlaying] = useState(false);
+  const [isMuted, setIsMuted] = useState(false);
   const [progress, setProgress] = useState(0);
   const [current, setCurrent] = useState(0);
   const [audioDuration, setAudioDuration] = useState(0);
+  const [volume, setVolume] = useState(1);
 
   const audio = useRef(new Audio(url));
 
@@ -41,6 +43,12 @@ export function usePlayer(url) {
     audio.current.currentTime = (duration || 0) * (value / 100);
   };
 
+  const changeVolume = (value) => {
+    audio.current.volume = value;
+    setVolume(audio.current.volume);
+    setIsMuted(!volume);
+  };
+
   const togglePlay = () => {
     setIsPlaying((prevState) => !prevState);
 
@@ -51,12 +59,21 @@ export function usePlayer(url) {
     }
   };
 
+  const toggleMute = () => {
+    setIsMuted((prevState) => !prevState);
+    audio.current.volume = isMuted ? volume : 0;
+  };
+
   return {
     isPlaying,
     progress,
     current,
     audioDuration,
+    volume,
+    isMuted,
     togglePlay,
     changeCurrentTime,
+    changeVolume,
+    toggleMute,
   };
 }
