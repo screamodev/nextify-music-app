@@ -7,8 +7,12 @@ export const PlayerContext = createContext({
   progress: 0,
   current: 0,
   audioDuration: 0,
+  duration: 0,
+  isMuted: false,
   togglePlay: () => {},
   changeCurrentTime: () => {},
+  changeVolume: () => {},
+  toggleMute: () => {},
 });
 
 export function PlayerProvider({ children }) {
@@ -18,8 +22,12 @@ export function PlayerProvider({ children }) {
     progress,
     current,
     audioDuration,
+    volume,
+    isMuted,
     togglePlay,
     changeCurrentTime,
+    changeVolume,
+    toggleMute,
   } = usePlayer(url);
 
   return (
@@ -29,8 +37,12 @@ export function PlayerProvider({ children }) {
         progress,
         current,
         audioDuration,
+        volume,
+        isMuted,
         togglePlay,
         changeCurrentTime,
+        changeVolume,
+        toggleMute,
       }}
     >
       {children}
