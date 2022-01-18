@@ -39,6 +39,8 @@
     "arrow-body-style": "off",
     "no-return-assign": "off",
     "no-param-reassign": "off",
-    "yoda": "off"
+    "yoda": "off",
+    "consistent-return": "off",
+    "no-else-return": "off"
   }
 }
