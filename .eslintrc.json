@@ -41,6 +41,9 @@
     "no-param-reassign": "off",
     "yoda": "off",
     "consistent-return": "off",
-    "no-else-return": "off"
+    "no-else-return": "off",
+    "jsx-a11y/label-has-associated-control": "off",
+    "react/jsx-no-useless-fragment": "off",
+    "object-curly-newline": "off"
   }
 }
