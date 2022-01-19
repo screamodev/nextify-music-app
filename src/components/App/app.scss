@@ -1,7 +1,7 @@
-.app {
-  @apply min-h-screen flex flex-col;
+.app-wrapper {
+  @apply h-full;
 }
 
-.main-container {
-  @apply flex justify-between flex-1;
+.app-wrapper-content {
+  @apply h-full;
 }
