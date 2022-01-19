@@ -8,6 +8,7 @@ module.exports = {
       colors: {
         primary: "#F00F4F",
         secondary: "#980BC5",
+        "form-rgba": "rgba(73, 0, 203, 0.56)",
       },
     },
   },
