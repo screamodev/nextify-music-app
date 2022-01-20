@@ -62,5 +62,9 @@
     .sign-in-button {
       @apply text-[28px] p-1 bg-primary rounded-lg;
     }
+
+    .sign-up-button {
+      @apply text-[28px] p-1 mt-10 bg-secondary rounded-lg;
+    }
   }
 }

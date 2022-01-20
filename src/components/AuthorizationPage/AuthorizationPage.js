@@ -1,8 +1,20 @@
-import NextifyLogo from "../../assets/images/logo-nextify.png";
+import { useState } from "react";
 import FormInput from "../common/FormInput";
+import RegistrationModal from "../RegistrationModal";
+import NextifyLogo from "../../assets/images/logo-nextify.png";
 import "./authorizationPage.scss";
 
 function AuthorizationPage() {
+  const [isRegisterModalOpen, setIsRegisterModalOpen] = useState(false);
+
+  const openModal = () => {
+    setIsRegisterModalOpen(true);
+  };
+
+  const closeModal = () => {
+    setIsRegisterModalOpen(false);
+  };
+
   return (
     <>
       <div className="auth-wrapper">
@@ -32,9 +44,13 @@ function AuthorizationPage() {
               </button>
             </form>
             <hr />
+            <button className="sign-up-button" onClick={openModal}>
+              Sign up
+            </button>
           </div>
         </div>
       </div>
+      <RegistrationModal isOpen={isRegisterModalOpen} closeModal={closeModal} />
     </>
   );
 }
