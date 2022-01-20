@@ -1,0 +1,19 @@
+.registration-modal-header {
+  @apply flex justify-between mb-10;
+
+  .registration-modal-heading {
+    @apply text-[27px];
+  }
+
+  .registration-modal-heading-icon {
+    @apply text-[32px] cursor-pointer;
+  }
+}
+
+.registration-modal-form {
+  @apply flex flex-col mb-20;
+
+  .registration-form-button {
+    @apply text-[28px] p-1 bg-secondary rounded-lg;
+  }
+}

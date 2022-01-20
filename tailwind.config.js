@@ -9,6 +9,7 @@ module.exports = {
         primary: "#F00F4F",
         secondary: "#980BC5",
         "form-rgba": "rgba(73, 0, 203, 0.56)",
+        "modal-overlay": "rgba(32, 32, 32, 0.94)",
       },
     },
   },
