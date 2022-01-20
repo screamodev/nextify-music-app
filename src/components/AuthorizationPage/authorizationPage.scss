@@ -1,0 +1,66 @@
+.auth-wrapper {
+  @apply bg-[url('../../assets/images/background-free-image.jpg')] w-full h-full bg-cover flex items-center;
+}
+
+.auth-content {
+  @apply max-w-[1170px] my-0 mx-auto flex flex-col items-center justify-between px-[20px];
+
+  @screen xl {
+    @apply flex-row content-center;
+  }
+
+  .auth-info {
+    @apply w-[100%] mb-[30px] text-white;
+
+    .info-logo {
+      @apply w-[100px] h-[100px] hidden;
+
+      .info-logo-image {
+        @apply w-[100px] h-[100px];
+      }
+
+      @screen xl {
+        @apply block;
+      }
+    }
+
+    @screen xl {
+      @apply mb-0 w-1/3;
+    }
+
+    @screen lg {
+      @apply mb-0 w-1/2;
+    }
+  }
+
+  .info-upper-heading {
+    @apply text-[32px] leading-[46px] mb-[20px];
+
+    @screen xl {
+      @apply text-[64px] leading-[80px] mb-[70px];
+    }
+  }
+
+  .info-bottom-heading {
+    @apply text-[24px] leading-[38px] hidden;
+
+    @screen xl {
+      @apply text-[32px] leading-[52px] mb-[70px];
+    }
+    @screen md {
+      @apply block;
+    }
+  }
+
+  .auth-form-wrapper {
+    @apply min-w-[300px] w-1/3 flex flex-col text-white bg-form-rgba p-8 rounded-lg;
+
+    .sign-in-form {
+      @apply flex flex-col mb-20;
+    }
+
+    .sign-in-button {
+      @apply text-[28px] p-1 bg-primary rounded-lg;
+    }
+  }
+}
