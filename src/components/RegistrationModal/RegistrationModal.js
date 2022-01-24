@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { useDispatch } from "react-redux";
 import { AiFillCloseCircle } from "react-icons/ai";
+import PropTypes from "prop-types";
 import FormInput from "../common/FormInput";
 import Modal from "../common/Modal";
 import { register } from "../../store/authSlice";
@@ -69,5 +70,10 @@ function RegistrationModal({ isOpen, closeModal }) {
     </Modal>
   );
 }
+
+RegistrationModal.propTypes = {
+  isOpen: PropTypes.bool,
+  closeModal: PropTypes.func,
+};
 
 export default RegistrationModal;
