@@ -44,6 +44,8 @@
     "no-else-return": "off",
     "jsx-a11y/label-has-associated-control": "off",
     "react/jsx-no-useless-fragment": "off",
-    "object-curly-newline": "off"
+    "object-curly-newline": "off",
+    "react/jsx-props-no-spreading": "off",
+    "react/require-default-props": "off"
   }
 }
