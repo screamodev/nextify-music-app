@@ -1,8 +1,10 @@
 import { Provider } from "react-redux";
+import { Routes, Route } from "react-router-dom";
 import { PlayerProvider } from "../../contexts/PlayerContext";
+import AuthorizationPage from "../../pages/AuthorizationPage";
+import MyProfilePage from "../../pages/MyProfilePage";
 import store from "../../store";
-import AuthorizationPage from "../AuthorizationPage";
-import Footer from "../Footer";
+import { AUTH_PAGE, PROFILE_PAGE } from "../../constants/routes";
 import "./app.scss";
 
 function App() {
@@ -11,9 +13,11 @@ function App() {
       <PlayerProvider>
         <div className="app-wrapper">
           <div className="app-wrapper-content">
-            <AuthorizationPage />
+            <Routes>
+              <Route path={AUTH_PAGE} element={<AuthorizationPage />} />
+              <Route path={PROFILE_PAGE} element={<MyProfilePage />} />
+            </Routes>
           </div>
-          <Footer />
         </div>
       </PlayerProvider>
     </Provider>
