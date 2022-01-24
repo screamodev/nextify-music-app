@@ -4,3 +4,5 @@
 /build/
 
 /db.json
+
+/.env.local
