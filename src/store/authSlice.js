@@ -11,6 +11,7 @@ export const register = createAsyncThunk(
       return thunkAPI.rejectWithValue(data);
     }
 
+    localStorage.setItem("token", data.accessToken);
     return data;
   }
 );
@@ -32,7 +33,6 @@ export const authSlice = createSlice({
       state.isFetching = false;
       state.isLoggedIn = true;
       state.isError = false;
-      localStorage.setItem("token", payload.accessToken);
     },
     [register.rejected]: (state, { error }) => {
       state.isFetching = false;
