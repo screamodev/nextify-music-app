@@ -1,6 +1,6 @@
 import { useState } from "react";
-import FormInput from "../common/FormInput";
-import RegistrationModal from "../RegistrationModal";
+import FormInput from "../../components/common/FormInput";
+import RegistrationModal from "../../components/RegistrationModal";
 import NextifyLogo from "../../assets/images/logo-nextify.png";
 import "./authorizationPage.scss";
 
