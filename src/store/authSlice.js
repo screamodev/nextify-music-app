@@ -1,13 +1,26 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
-import { signUp } from "../api/authApi";
+import { signIn, signUp } from "../api/authApi";
 
 export const register = createAsyncThunk(
   "auth/register",
   async (userData, thunkAPI) => {
-    const response = await signUp(userData);
-    const { data } = response;
+    const { data, status } = await signUp(userData);
 
-    if (response.status !== 201) {
+    if (status !== 201) {
+      return thunkAPI.rejectWithValue(data);
+    }
+
+    localStorage.setItem("token", data.accessToken);
+    return data;
+  }
+);
+
+export const login = createAsyncThunk(
+  "auth/login",
+  async (userData, thunkAPI) => {
+    const { data, status } = await signIn(userData);
+
+    if (status !== 200) {
       return thunkAPI.rejectWithValue(data);
     }
 
@@ -40,6 +53,20 @@ export const authSlice = createSlice({
       state.errorMessage = error.message;
     },
     [register.pending]: (state) => {
+      state.isFetching = true;
+    },
+    [login.fulfilled]: (state, { payload }) => {
+      state.userData = payload.user;
+      state.isFetching = false;
+      state.isLoggedIn = true;
+      state.isError = false;
+    },
+    [login.rejected]: (state, { error }) => {
+      state.isFetching = false;
+      state.isError = true;
+      state.errorMessage = error.message;
+    },
+    [login.pending]: (state) => {
       state.isFetching = true;
     },
   },
