@@ -1,3 +1,3 @@
 export const AUTH_PAGE = "/authorization";
 
-export const PROFILE_PAGE = "/";
+export const MAIN_PAGE = "/";
