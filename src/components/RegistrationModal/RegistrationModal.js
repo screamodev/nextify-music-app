@@ -1,32 +1,30 @@
 import { useState } from "react";
 import { useDispatch } from "react-redux";
 import { AiFillCloseCircle } from "react-icons/ai";
+import { Form, Formik, Field } from "formik";
+import { unwrapResult } from "@reduxjs/toolkit";
 import PropTypes from "prop-types";
+import { register } from "../../store/authSlice";
+import { signupSchema } from "../../schemas/authSchemas";
+import PreLoader from "../common/PreLoader/PreLoader";
 import FormInput from "../common/FormInput";
 import Modal from "../common/Modal";
-import { register } from "../../store/authSlice";
 import "./registrationModal.scss";
 
-const initialState = {
-  name: "",
-  email: "",
-  password: "",
-};
-
 function RegistrationModal({ isOpen, closeModal }) {
-  const [formData, setFormData] = useState(initialState);
+  const [isRegisterError, setIsRegisterError] = useState(false);
+  const [isRegisterFetch, setIsRegisterFetch] = useState(false);
   const dispatch = useDispatch();
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    dispatch(register(formData));
-    setFormData({ ...initialState });
-    closeModal();
-  };
-
-  const handleChange = (e) => {
-    const { name, value } = e.target;
-    setFormData({ ...formData, [name]: value });
+  const submitHandler = ({ name, email, password }) => {
+    setIsRegisterFetch(true);
+    setIsRegisterError(false);
+    dispatch(register({ name, email, password }))
+      .then(unwrapResult)
+      .catch(() => {
+        setIsRegisterError(true);
+        setIsRegisterFetch(false);
+      });
   };
 
   return (
@@ -39,33 +37,53 @@ function RegistrationModal({ isOpen, closeModal }) {
         />
       </div>
       <div className="registration-modal-body">
-        <form className="registration-modal-form" onSubmit={handleSubmit}>
-          <FormInput
-            name="name"
-            label="Name"
-            placeholder="Enter name"
-            value={formData.name}
-            onChange={handleChange}
-          />
-          <FormInput
-            name="email"
-            label="Email"
-            placeholder="Enter email"
-            value={formData.email}
-            onChange={handleChange}
-          />
-          <FormInput
-            name="password"
-            label="Password"
-            type="password"
-            placeholder="Enter password"
-            value={formData.password}
-            onChange={handleChange}
-          />
-          <button className="registration-form-button" type="submit">
-            Sign up
-          </button>
-        </form>
+        {isRegisterFetch ? (
+          <PreLoader />
+        ) : (
+          <Formik
+            initialValues={{
+              name: "",
+              email: "",
+              password: "",
+              passwordConfirm: "",
+            }}
+            validationSchema={signupSchema}
+            onSubmit={submitHandler}
+          >
+            <Form className="registration-modal-form">
+              <Field
+                component={FormInput}
+                name="name"
+                label="Name"
+                placeholder="Enter name"
+              />
+              <Field
+                component={FormInput}
+                name="email"
+                label="Email"
+                placeholder="Enter email"
+              />
+              <Field
+                component={FormInput}
+                name="password"
+                label="Password"
+                type="password"
+                placeholder="Enter password"
+              />
+              <Field
+                component={FormInput}
+                name="passwordConfirm"
+                label="Confirm password"
+                type="password"
+                placeholder="Enter password"
+              />
+              <button className="registration-form-button">Sign up</button>
+              {isRegisterError && (
+                <div className="error-message">User already exists.</div>
+              )}
+            </Form>
+          </Formik>
+        )}
       </div>
     </Modal>
   );

@@ -11,9 +11,13 @@
 }
 
 .registration-modal-form {
-  @apply flex flex-col mb-20;
+  @apply flex flex-col mb-[20px];
 
   .registration-form-button {
-    @apply text-[28px] p-1 bg-secondary rounded-lg;
+    @apply text-[28px] mb-[15px] p-1 bg-secondary rounded-lg;
+  }
+
+  .error-message {
+    @apply text-red-700 font-bold text-center p-[5px] mb-[5px] border border-red-700;
   }
 }

@@ -1,7 +1,15 @@
+@mixin input-border($color) {
+  @apply leading-[28pt] text-black border-solid mb-[10px] border-b-[5px] border-black rounded-lg outline-none text-left p-1 focus:#{$color};
+}
+
 .form-input-block {
-  @apply flex flex-col;
+  @apply flex flex-col mb-[20px];
 
   .form-input {
-    @apply leading-[28pt] mb-[28pt] text-black border-solid border-b-[5px] border-black rounded-lg outline-none p-1 focus:border-secondary;
+    @include input-border("border-secondary");
+  }
+
+  .error {
+    @include input-border("border-red-700");
   }
 }
