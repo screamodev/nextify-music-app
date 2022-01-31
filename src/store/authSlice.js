@@ -31,44 +31,20 @@ export const login = createAsyncThunk(
 
 const initialState = {
   userData: null,
-  isFetching: false,
   isLoggedIn: false,
-  isError: false,
-  errorMessage: "",
+};
+
+const onFulfilled = (state, { payload }) => {
+  state.userData = payload.user;
+  state.isLoggedIn = true;
 };
 
 export const authSlice = createSlice({
   name: "auth",
   initialState,
   extraReducers: {
-    [register.fulfilled]: (state, { payload }) => {
-      state.userData = payload.user;
-      state.isFetching = false;
-      state.isLoggedIn = true;
-      state.isError = false;
-    },
-    [register.rejected]: (state, { error }) => {
-      state.isFetching = false;
-      state.isError = true;
-      state.errorMessage = error.message;
-    },
-    [register.pending]: (state) => {
-      state.isFetching = true;
-    },
-    [login.fulfilled]: (state, { payload }) => {
-      state.userData = payload.user;
-      state.isFetching = false;
-      state.isLoggedIn = true;
-      state.isError = false;
-    },
-    [login.rejected]: (state, { error }) => {
-      state.isFetching = false;
-      state.isError = true;
-      state.errorMessage = error.message;
-    },
-    [login.pending]: (state) => {
-      state.isFetching = true;
-    },
+    [register.fulfilled]: onFulfilled,
+    [login.fulfilled]: onFulfilled,
   },
 });
 

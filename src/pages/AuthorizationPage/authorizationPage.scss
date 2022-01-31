@@ -60,11 +60,15 @@
     }
 
     .sign-in-button {
-      @apply text-[28px] p-1 bg-primary rounded-lg;
+      @apply text-[28px] mb-[20px] p-1 bg-primary rounded-lg;
     }
 
     .sign-up-button {
       @apply text-[28px] p-1 mt-10 bg-secondary rounded-lg;
     }
+  }
+
+  .error-message {
+    @apply text-red-700 font-bold text-center p-[5px] mb-[5px] border border-red-700;
   }
 }

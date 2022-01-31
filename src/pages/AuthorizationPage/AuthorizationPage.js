@@ -1,30 +1,30 @@
 import { useState } from "react";
 import { useDispatch } from "react-redux";
+import { Field, Form, Formik } from "formik";
+import { unwrapResult } from "@reduxjs/toolkit";
+import { login } from "../../store/authSlice";
+import { signinSchema } from "../../schemas/authSchemas";
 import FormInput from "../../components/common/FormInput";
 import RegistrationModal from "../../components/RegistrationModal";
-import { login } from "../../store/authSlice";
+import PreLoader from "../../components/common/PreLoader/PreLoader";
 import NextifyLogo from "../../assets/images/logo-nextify.png";
 import "./authorizationPage.scss";
 
-const initialState = {
-  email: "",
-  password: "",
-};
-
 function AuthorizationPage() {
-  const [formData, setFormData] = useState(initialState);
+  const [isLoginError, setIsLoginError] = useState(false);
+  const [isLoginFetch, setIsLoginFetch] = useState(false);
   const [isRegisterModalOpen, setIsRegisterModalOpen] = useState(false);
   const dispatch = useDispatch();
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    dispatch(login(formData));
-    setFormData(initialState);
-  };
-
-  const handleChange = (e) => {
-    const { name, value } = e.target;
-    setFormData({ ...formData, [name]: value });
+  const submitHandler = ({ email, password }) => {
+    setIsLoginFetch(true);
+    setIsLoginError(false);
+    dispatch(login({ email, password }))
+      .then(unwrapResult)
+      .catch(() => {
+        setIsLoginError(true);
+        setIsLoginFetch(false);
+      });
   };
 
   const openModal = () => {
@@ -52,27 +52,43 @@ function AuthorizationPage() {
             </h2>
           </div>
           <div className="auth-form-wrapper">
-            <form className="sign-in-form" onSubmit={handleSubmit}>
-              <FormInput
-                name="email"
-                label="Email"
-                type="email"
-                placeholder="Enter email"
-                value={formData.email}
-                onChange={handleChange}
-              />
-              <FormInput
-                name="password"
-                label="Password"
-                type="password"
-                placeholder="Enter password"
-                value={formData.password}
-                onChange={handleChange}
-              />
-              <button className="sign-in-button" type="submit">
-                Sign in
-              </button>
-            </form>
+            {isLoginFetch ? (
+              <PreLoader />
+            ) : (
+              <Formik
+                initialValues={{
+                  email: "",
+                  password: "",
+                }}
+                validationSchema={signinSchema}
+                onSubmit={submitHandler}
+              >
+                {
+                  <Form className="sign-in-form">
+                    <Field
+                      component={FormInput}
+                      name="email"
+                      label="Email"
+                      type="email"
+                      placeholder="Enter email"
+                    />
+                    <Field
+                      component={FormInput}
+                      name="password"
+                      label="Password"
+                      type="password"
+                      placeholder="Enter password"
+                    />
+                    <button className="sign-in-button">Sign in</button>
+                    {isLoginError && (
+                      <div className="error-message">
+                        Incorrect email or password.
+                      </div>
+                    )}
+                  </Form>
+                }
+              </Formik>
+            )}
             <hr />
             <button className="sign-up-button" onClick={openModal}>
               Sign up
