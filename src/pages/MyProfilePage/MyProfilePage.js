@@ -1,5 +1,5 @@
 import { useDispatch } from "react-redux";
-import PlayerLayout from "../../components/PlayerLayout";
+import MainLayout from "../../components/MainLayout";
 import { signOut } from "../../store/authSlice";
 
 function MyProfilePage() {
@@ -10,11 +10,11 @@ function MyProfilePage() {
   };
 
   return (
-    <PlayerLayout>
+    <MainLayout>
       <div>
         <button onClick={logout}>Logout</button>
       </div>
-    </PlayerLayout>
+    </MainLayout>
   );
 }
 

@@ -1,8 +1,8 @@
 import Footer from "../Footer";
 import Sidebar from "../Sidebar";
-import "./authLayout.scss";
+import "./mainLayout.scss";
 
-function AuthLayout({ children }) {
+function MainLayout({ children }) {
   return (
     <>
       <div className="upper-content">
@@ -14,4 +14,4 @@ function AuthLayout({ children }) {
   );
 }
 
-export default AuthLayout;
+export default MainLayout;
