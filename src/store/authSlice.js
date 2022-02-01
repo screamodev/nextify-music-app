@@ -48,6 +48,9 @@ export const initialState = {
 export const authSlice = createSlice({
   name: "auth",
   initialState,
+  reducers: {
+    signOut: () => initialState,
+  },
   extraReducers: {
     [register.fulfilled]: onFulfilled,
     [register.rejected]: onRejected,
@@ -55,5 +58,7 @@ export const authSlice = createSlice({
     [login.rejected]: onRejected,
   },
 });
+
+export const { signOut } = authSlice.actions;
 
 export default authSlice.reducer;
