@@ -10,7 +10,6 @@ export const register = createAsyncThunk(
       return thunkAPI.rejectWithValue(data);
     }
 
-    localStorage.setItem("token", data.accessToken);
     return data;
   }
 );
@@ -24,19 +23,26 @@ export const login = createAsyncThunk(
       return thunkAPI.rejectWithValue(data);
     }
 
-    localStorage.setItem("token", data.accessToken);
     return data;
   }
 );
 
-const initialState = {
-  userData: null,
-  isLoggedIn: false,
+const onFulfilled = (state, { payload }) => {
+  state.user = payload.user;
+  state.token = payload.accessToken;
+  state.isLoggedIn = true;
 };
 
-const onFulfilled = (state, { payload }) => {
-  state.userData = payload.user;
-  state.isLoggedIn = true;
+const onRejected = (state) => {
+  state.isLoggedIn = false;
+  state.user = null;
+  state.token = null;
+};
+
+export const initialState = {
+  user: null,
+  isLoggedIn: false,
+  token: null,
 };
 
 export const authSlice = createSlice({
@@ -44,7 +50,9 @@ export const authSlice = createSlice({
   initialState,
   extraReducers: {
     [register.fulfilled]: onFulfilled,
+    [register.rejected]: onRejected,
     [login.fulfilled]: onFulfilled,
+    [login.rejected]: onRejected,
   },
 });
 
