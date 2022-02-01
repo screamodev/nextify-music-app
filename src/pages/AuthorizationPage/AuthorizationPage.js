@@ -63,30 +63,28 @@ function AuthorizationPage() {
                 validationSchema={signinSchema}
                 onSubmit={submitHandler}
               >
-                {
-                  <Form className="sign-in-form">
-                    <Field
-                      component={FormInput}
-                      name="email"
-                      label="Email"
-                      type="email"
-                      placeholder="Enter email"
-                    />
-                    <Field
-                      component={FormInput}
-                      name="password"
-                      label="Password"
-                      type="password"
-                      placeholder="Enter password"
-                    />
-                    <button className="sign-in-button">Sign in</button>
-                    {isLoginError && (
-                      <div className="error-message">
-                        Incorrect email or password.
-                      </div>
-                    )}
-                  </Form>
-                }
+                <Form className="sign-in-form">
+                  <Field
+                    component={FormInput}
+                    name="email"
+                    label="Email"
+                    type="email"
+                    placeholder="Enter email"
+                  />
+                  <Field
+                    component={FormInput}
+                    name="password"
+                    label="Password"
+                    type="password"
+                    placeholder="Enter password"
+                  />
+                  <button className="sign-in-button">Sign in</button>
+                  {isLoginError && (
+                    <div className="error-message">
+                      Incorrect email or password.
+                    </div>
+                  )}
+                </Form>
               </Formik>
             )}
             <hr />
