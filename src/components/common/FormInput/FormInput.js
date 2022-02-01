@@ -9,16 +9,17 @@ function FormInput({
   type,
 }) {
   const { error, touched } = getFieldMeta();
-  const errorMessage = error[field.name];
+  const { name } = field;
+  const errorMessage = error[name];
 
   return (
     <div className="form-input-block">
-      <label htmlFor={field.name}>{label}</label>
+      <label htmlFor={name}>{label}</label>
       <input
         className={errorMessage ? "error" : "form-input"}
         placeholder={placeholder}
         type={type}
-        id={field.name}
+        id={name}
         {...field}
       />
       {errorMessage && touched && (
@@ -32,8 +33,12 @@ FormInput.propTypes = {
   label: PropTypes.string,
   placeholder: PropTypes.string,
   type: PropTypes.string,
-  field: PropTypes.object,
-  form: PropTypes.object,
+  field: PropTypes.shape({
+    name: PropTypes.string,
+  }),
+  form: PropTypes.shape({
+    getFieldMeta: PropTypes.func,
+  }),
 };
 
 FormInput.defaultProps = {
