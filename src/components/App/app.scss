@@ -3,5 +3,5 @@
 }
 
 .app-wrapper-content {
-  @apply h-full;
+  @apply flex flex-col h-full overflow-hidden;
 }

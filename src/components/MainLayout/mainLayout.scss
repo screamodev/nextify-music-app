@@ -1,0 +1,7 @@
+.upper-content {
+  @apply flex grow shrink-0 basis-auto;
+}
+
+.nav-item {
+  @apply hover:text-white;
+}
