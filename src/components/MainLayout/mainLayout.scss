@@ -1,5 +1,5 @@
 .upper-content {
-  @apply h-full flex;
+  @apply flex grow shrink-0 basis-auto;
 }
 
 .nav-item {
