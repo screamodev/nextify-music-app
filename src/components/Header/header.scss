@@ -2,7 +2,7 @@
   @apply flex justify-between p-[15px] bg-neutral-900;
 
   .header-logout-wrapper {
-    @apply p-[8px] rounded-lg bg-secondary text-white flex;
+    @apply p-[8px] rounded-lg bg-primary text-white flex;
 
     .logout-button {
       @apply font-bold text-[14px];
