@@ -1,4 +1,8 @@
-.upper-content {
+.main-content {
+  @apply flex flex-col w-full;
+}
+
+.wrapper-main {
   @apply flex grow shrink-0 basis-auto;
 }
 
