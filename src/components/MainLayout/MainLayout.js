@@ -1,13 +1,17 @@
-import Footer from "../Footer";
+import Header from "../Header";
 import Sidebar from "../Sidebar";
+import Footer from "../Footer";
 import "./mainLayout.scss";
 
 function MainLayout({ children }) {
   return (
     <>
-      <div className="upper-content">
+      <div className="wrapper-main">
         <Sidebar />
-        {children}
+        <div className="main-content">
+          <Header />
+          {children}
+        </div>
       </div>
       <Footer />
     </>
