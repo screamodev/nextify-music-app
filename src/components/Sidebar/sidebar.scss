@@ -1,5 +1,5 @@
 .aside-menu {
-  @apply flex flex-col p-[20px] h-full w-1/6 bg-black text-gray-300 text-[18px];
+  @apply flex flex-col p-[20px] h-full w-full bg-black text-gray-300 text-[18px];
 }
 
 .nav-list {
@@ -12,4 +12,8 @@
 
 .playlists-list {
   @apply flex flex-col leading-8 p-[10px];
+}
+
+.bm-menu {
+  @apply w-4/5;
 }
