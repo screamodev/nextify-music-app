@@ -47,5 +47,9 @@
         @apply p-[5px] bg-primary rounded-lg text-white font-bold;
       }
     }
+
+    .search-not-found {
+      @apply text-center;
+    }
   }
 }
