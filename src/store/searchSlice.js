@@ -29,10 +29,14 @@ const initialState = {
 const searchSlice = createSlice({
   name: "search",
   initialState,
+  reducers: {
+    clearSongs: () => initialState,
+  },
   extraReducers: {
     [search.fulfilled]: onFulfilled,
     [search.rejected]: onRejected,
   },
 });
 
+export const { clearSongs } = searchSlice.actions;
 export default searchSlice.reducer;

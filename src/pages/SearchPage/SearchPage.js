@@ -1,15 +1,30 @@
+import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { MdClear } from "react-icons/md";
-import { search } from "../../store/searchSlice";
+import { clearSongs, search } from "../../store/searchSlice";
 import MainLayout from "../../components/MainLayout";
 import Song from "../../components/Song";
 import "./searchPage.scss";
 
 function SearchPage() {
+  const [searchInput, setSearchInput] = useState("");
   const dispatch = useDispatch();
   const { songs } = useSelector((state) => state.search);
+
+  useEffect(() => {
+    if (searchInput) {
+      dispatch(search(searchInput));
+    } else {
+      dispatch(clearSongs());
+    }
+  }, [searchInput]);
+
   const handleChange = (e) => {
-    dispatch(search(e.target.value));
+    setSearchInput(e.target.value);
+  };
+
+  const clearInput = () => {
+    setSearchInput("");
   };
 
   return (
@@ -20,9 +35,10 @@ function SearchPage() {
             <input
               className="search-input"
               placeholder="Artist or song name"
+              value={searchInput}
               onChange={handleChange}
             />
-            <button className="search-input-button">
+            <button onClick={clearInput} className="search-input-button">
               <MdClear className="search-input-button-icon" />
             </button>
           </div>
