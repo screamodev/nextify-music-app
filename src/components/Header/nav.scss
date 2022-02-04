@@ -1,7 +1,7 @@
-.header {
+.nav {
   @apply flex justify-between p-[15px] bg-neutral-900;
 
-  .header-logout-wrapper {
+  .nav-logout-wrapper {
     @apply p-[8px] rounded-lg bg-primary text-white flex;
 
     .logout-button {

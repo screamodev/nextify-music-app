@@ -1,8 +1,8 @@
 import { useDispatch } from "react-redux";
 import { signOut } from "../../store/authSlice";
-import "./header.scss";
+import "./nav.scss";
 
-function Header() {
+function Nav() {
   const dispatch = useDispatch();
 
   const logout = () => {
@@ -10,15 +10,15 @@ function Header() {
   };
 
   return (
-    <header className="header">
+    <nav className="nav">
       <div />
-      <div className="header-logout-wrapper">
+      <div className="nav-logout-wrapper">
         <button className="logout-button" onClick={logout}>
           Logout
         </button>
       </div>
-    </header>
+    </nav>
   );
 }
 
-export default Header;
+export default Nav;
