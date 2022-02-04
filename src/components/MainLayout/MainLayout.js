@@ -1,4 +1,4 @@
-import Header from "../Header";
+import Nav from "../Header";
 import Sidebar from "../Sidebar";
 import Footer from "../Footer";
 import "./mainLayout.scss";
@@ -9,7 +9,7 @@ function MainLayout({ children }) {
       <div className="wrapper-main">
         <Sidebar />
         <div className="main-content">
-          <Header />
+          <Nav />
           {children}
         </div>
       </div>
