@@ -4,20 +4,28 @@ import { MdClear } from "react-icons/md";
 import { clearSongs, search } from "../../store/searchSlice";
 import MainLayout from "../../components/MainLayout";
 import Song from "../../components/Song";
+import SortBy from "../../components/SortBy";
 import "./searchPage.scss";
+
+const initialSortState = {
+  field: "",
+  order: "",
+};
 
 function SearchPage() {
   const [searchInput, setSearchInput] = useState("");
+  const [sortState, setSortState] = useState(initialSortState);
+
   const dispatch = useDispatch();
   const { songs } = useSelector((state) => state.search);
 
   useEffect(() => {
     if (searchInput) {
-      dispatch(search(searchInput));
-    } else {
+      dispatch(search({ searchInput, ...sortState }));
+    } else if (!searchInput) {
       dispatch(clearSongs());
     }
-  }, [searchInput]);
+  }, [searchInput, sortState]);
 
   const handleChange = (e) => {
     setSearchInput(e.target.value);
@@ -25,6 +33,22 @@ function SearchPage() {
 
   const clearInput = () => {
     setSearchInput("");
+  };
+
+  const getOrderSort = () => {
+    return sortState.order === "asc" ? "desc" : "asc";
+  };
+
+  const onSortBy = (field) => {
+    setSortState(({ field: prevField }) => ({
+      field,
+      order: prevField === field ? getOrderSort() : "asc",
+    }));
+  };
+
+  const clear = (e) => {
+    e.stopPropagation();
+    setSortState(initialSortState);
   };
 
   return (
@@ -43,12 +67,9 @@ function SearchPage() {
             </button>
           </div>
           <div className="search-songs">
-            <div className="sort-by">
-              <div className="sort-by-text">Sort by:</div>
-              <button className="sort-by-name">name</button>
-            </div>
+            <SortBy clear={clear} sortState={sortState} onSortBy={onSortBy} />
             <div className="search-songs-list">
-              {songs.length ? (
+              {songs?.length ? (
                 songs.map(({ author, name, duration, id }) => (
                   <Song
                     author={author}

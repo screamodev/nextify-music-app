@@ -3,8 +3,8 @@ import { searchSongs } from "../api/searchApi";
 
 export const search = createAsyncThunk(
   "search/songs",
-  async (query, thunkAPI) => {
-    const { data, status } = await searchSongs(query);
+  async ({ searchInput, field, order }, thunkAPI) => {
+    const { data, status } = await searchSongs(searchInput, field, order);
 
     if (status !== 200) {
       return thunkAPI.rejectWithValue(data);
