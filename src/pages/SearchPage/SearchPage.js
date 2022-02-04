@@ -1,10 +1,9 @@
 import { useEffect, useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
 import { MdClear } from "react-icons/md";
-import { clearSongs, search } from "../../store/searchSlice";
 import MainLayout from "../../components/MainLayout";
 import Song from "../../components/Song";
 import SortBy from "../../components/SortBy";
+import { searchSongs } from "../../api/searchApi";
 import "./searchPage.scss";
 
 const initialSortState = {
@@ -15,15 +14,15 @@ const initialSortState = {
 function SearchPage() {
   const [searchInput, setSearchInput] = useState("");
   const [sortState, setSortState] = useState(initialSortState);
-
-  const dispatch = useDispatch();
-  const { songs } = useSelector((state) => state.search);
+  const [songs, setSongs] = useState([]);
 
   useEffect(() => {
     if (searchInput) {
-      dispatch(search({ searchInput, ...sortState }));
+      searchSongs({ searchInput, ...sortState }).then(({ data }) => {
+        setSongs(data);
+      });
     } else if (!searchInput) {
-      dispatch(clearSongs());
+      setSongs([]);
     }
   }, [searchInput, sortState]);
 
@@ -69,7 +68,7 @@ function SearchPage() {
           <div className="search-songs">
             <SortBy clear={clear} sortState={sortState} onSortBy={onSortBy} />
             <div className="search-songs-list">
-              {songs?.length ? (
+              {songs.length ? (
                 songs.map(({ author, name, duration, id }) => (
                   <Song
                     author={author}
