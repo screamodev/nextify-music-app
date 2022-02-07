@@ -7,9 +7,11 @@ function SortButton({ name, order, isActive, onSortBy, clear }) {
   const getDirectionArrow = () => {
     if (order === ASCENDING) {
       return <MdArrowDropUp className="sort-order-arrow" />;
-    } else if (order === DESCENDING) {
+    }
+    if (order === DESCENDING) {
       return <MdArrowDropDown className="sort-order-arrow" />;
     }
+    return null;
   };
 
   return (
@@ -31,11 +33,11 @@ function SortButton({ name, order, isActive, onSortBy, clear }) {
 }
 
 SortButton.propTypes = {
-  name: PropTypes.string,
-  order: PropTypes.string,
-  isActive: PropTypes.bool,
-  onSortBy: PropTypes.func,
-  clear: PropTypes.func,
+  name: PropTypes.string.isRequired,
+  order: PropTypes.string.isRequired,
+  isActive: PropTypes.bool.isRequired,
+  onSortBy: PropTypes.func.isRequired,
+  clear: PropTypes.func.isRequired,
 };
 
 export default SortButton;

@@ -35,9 +35,8 @@ function SearchPage() {
     setSearchInput("");
   };
 
-  const getOrderSort = () => {
-    return sortState.order === ASCENDING ? DESCENDING : ASCENDING;
-  };
+  const getOrderSort = () =>
+    sortState.order === ASCENDING ? DESCENDING : ASCENDING;
 
   const onSortBy = (field) => {
     setSortState(({ field: prevField }) => ({

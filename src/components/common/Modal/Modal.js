@@ -1,3 +1,4 @@
+import PropTypes from "prop-types";
 import "./modal.scss";
 
 function Modal({ isOpen, children }) {
@@ -9,5 +10,10 @@ function Modal({ isOpen, children }) {
     )
   );
 }
+
+Modal.propTypes = {
+  isOpen: PropTypes.bool.isRequired,
+  children: PropTypes.node.isRequired,
+};
 
 export default Modal;
