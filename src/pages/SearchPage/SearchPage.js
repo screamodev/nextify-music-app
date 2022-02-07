@@ -4,6 +4,7 @@ import MainLayout from "../../components/MainLayout";
 import Song from "../../components/Song";
 import SortBy from "../../components/SortBy";
 import { searchSongs } from "../../api/searchApi";
+import { ASCENDING, DESCENDING } from "../../constants/sortDirections";
 import "./searchPage.scss";
 
 const initialSortState = {
@@ -35,13 +36,13 @@ function SearchPage() {
   };
 
   const getOrderSort = () => {
-    return sortState.order === "asc" ? "desc" : "asc";
+    return sortState.order === ASCENDING ? DESCENDING : ASCENDING;
   };
 
   const onSortBy = (field) => {
     setSortState(({ field: prevField }) => ({
       field,
-      order: prevField === field ? getOrderSort() : "asc",
+      order: prevField === field ? getOrderSort() : ASCENDING,
     }));
   };
 

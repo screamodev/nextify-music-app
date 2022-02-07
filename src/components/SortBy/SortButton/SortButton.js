@@ -1,12 +1,13 @@
 import PropTypes from "prop-types";
 import { MdArrowDropDown, MdArrowDropUp, MdClear } from "react-icons/md";
+import { ASCENDING, DESCENDING } from "../../../constants/sortDirections";
 import "./sortButton.scss";
 
 function SortButton({ name, order, isActive, onSortBy, clear }) {
   const getDirectionArrow = () => {
-    if (order === "asc") {
+    if (order === ASCENDING) {
       return <MdArrowDropUp className="sort-order-arrow" />;
-    } else if (order === "desc") {
+    } else if (order === DESCENDING) {
       return <MdArrowDropDown className="sort-order-arrow" />;
     }
   };
