@@ -1,4 +1,5 @@
-import { createContext } from "react";
+import PropTypes from "prop-types";
+import { createContext, useMemo } from "react";
 import { useSelector } from "react-redux";
 import { usePlayer } from "../hooks/usePlayer";
 
@@ -30,22 +31,26 @@ export function PlayerProvider({ children }) {
     toggleMute,
   } = usePlayer(url);
 
+  const memoizedValue = useMemo(() => ({
+    isPlaying,
+    progress,
+    current,
+    audioDuration,
+    volume,
+    isMuted,
+    togglePlay,
+    changeCurrentTime,
+    changeVolume,
+    toggleMute,
+  }));
+
   return (
-    <PlayerContext.Provider
-      value={{
-        isPlaying,
-        progress,
-        current,
-        audioDuration,
-        volume,
-        isMuted,
-        togglePlay,
-        changeCurrentTime,
-        changeVolume,
-        toggleMute,
-      }}
-    >
+    <PlayerContext.Provider value={memoizedValue}>
       {children}
     </PlayerContext.Provider>
   );
 }
+
+PlayerProvider.propTypes = {
+  children: PropTypes.node.isRequired,
+};

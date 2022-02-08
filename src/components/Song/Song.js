@@ -25,8 +25,9 @@ function Song({ author, name, duration }) {
 }
 
 Song.propTypes = {
-  author: PropTypes.string,
-  name: PropTypes.string,
+  author: PropTypes.string.isRequired,
+  name: PropTypes.string.isRequired,
+  duration: PropTypes.string.isRequired,
 };
 
 export default Song;

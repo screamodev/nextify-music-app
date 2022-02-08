@@ -26,11 +26,14 @@ function Player() {
   const getVolumeIcon = () => {
     if (volume > 0.5 && !isMuted) {
       return <BsFillVolumeUpFill className="volume-toggle-button-icon" />;
-    } else if (volume <= 0.5 && !isMuted && volume !== 0) {
+    }
+    if (volume <= 0.5 && !isMuted && volume !== 0) {
       return <BsFillVolumeDownFill className="volume-toggle-button-icon" />;
-    } else if (volume === 0 || isMuted) {
+    }
+    if (volume === 0 || isMuted) {
       return <BsFillVolumeMuteFill className="volume-toggle-button-icon" />;
     }
+    return null;
   };
 
   return (

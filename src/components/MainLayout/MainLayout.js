@@ -1,3 +1,4 @@
+import PropTypes from "prop-types";
 import Nav from "../Header";
 import Sidebar from "../Sidebar";
 import Footer from "../Footer";
@@ -17,5 +18,9 @@ function MainLayout({ children }) {
     </>
   );
 }
+
+MainLayout.propTypes = {
+  children: PropTypes.node.isRequired,
+};
 
 export default MainLayout;

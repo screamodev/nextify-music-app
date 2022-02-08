@@ -9,7 +9,7 @@ function FormInput({
   type,
 }) {
   const { error, touched } = getFieldMeta();
-  const { name } = field;
+  const { name, onBlur, onChange, value } = field;
   const errorMessage = error[name];
 
   return (
@@ -20,7 +20,9 @@ function FormInput({
         placeholder={placeholder}
         type={type}
         id={name}
-        {...field}
+        onBlur={onBlur}
+        onChange={onChange}
+        value={value}
       />
       {errorMessage && touched && (
         <div className="error-message">{errorMessage}</div>
@@ -35,14 +37,19 @@ FormInput.propTypes = {
   type: PropTypes.string,
   field: PropTypes.shape({
     name: PropTypes.string,
-  }),
+    onBlur: PropTypes.func,
+    onChange: PropTypes.func,
+    value: PropTypes.string,
+  }).isRequired,
   form: PropTypes.shape({
     getFieldMeta: PropTypes.func,
-  }),
+  }).isRequired,
 };
 
 FormInput.defaultProps = {
   type: "text",
+  label: "",
+  placeholder: "",
 };
 
 export default FormInput;

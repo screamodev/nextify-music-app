@@ -28,9 +28,9 @@ SortBy.propTypes = {
   sortState: PropTypes.shape({
     field: PropTypes.string,
     order: PropTypes.string,
-  }),
-  clear: PropTypes.func,
-  onSortBy: PropTypes.func,
+  }).isRequired,
+  clear: PropTypes.func.isRequired,
+  onSortBy: PropTypes.func.isRequired,
 };
 
 export default SortBy;

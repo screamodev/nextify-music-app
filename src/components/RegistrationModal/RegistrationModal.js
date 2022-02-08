@@ -90,8 +90,8 @@ function RegistrationModal({ isOpen, closeModal }) {
 }
 
 RegistrationModal.propTypes = {
-  isOpen: PropTypes.bool,
-  closeModal: PropTypes.func,
+  isOpen: PropTypes.bool.isRequired,
+  closeModal: PropTypes.func.isRequired,
 };
 
 export default RegistrationModal;
