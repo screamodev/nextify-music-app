@@ -3,7 +3,7 @@
 }
 
 .wrapper-main {
-  @apply flex grow shrink-0 basis-auto;
+  @apply flex grow shrink-0 basis-auto bg-[url('../../assets/images/background-free-image.jpg')] bg-cover;
 }
 
 .nav-item {

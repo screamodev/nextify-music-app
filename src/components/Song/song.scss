@@ -1,0 +1,31 @@
+.song {
+  @apply flex my-[10px];
+
+  .play-button {
+    @apply p-[10px] text-white;
+
+    .play-button-icon {
+      @apply h-8 w-8;
+    }
+  }
+
+  .song-info {
+    @apply p-[10px] w-1/2 flex items-center overflow-hidden;
+  }
+
+  .song-duration {
+    @apply p-[10px] flex items-center;
+  }
+
+  .song-add-buttons {
+    @apply flex;
+
+    .add-to-button {
+      @apply p-[5px];
+
+      .add-to-button-icon {
+        @apply h-6 w-6 text-white;
+      }
+    }
+  }
+}

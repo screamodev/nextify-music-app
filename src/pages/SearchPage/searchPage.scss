@@ -1,0 +1,43 @@
+.search-wrapper {
+  @apply flex text-white flex-col h-[calc(100%-131px)] text-xl p-[5px] w-full self-center bg-secondary-opacity overflow-y-auto;
+
+  .search-wrapper-content {
+    @apply w-full self-center;
+
+    @screen lg {
+      @apply p-[25px] w-2/3 text-lg;
+    }
+  }
+
+  .search-input-block {
+    @apply p-[10px] flex justify-center relative;
+
+    .search-input {
+      @apply w-2/3 leading-[28pt] text-black border-solid border-b-[5px] border-black rounded-lg outline-none text-left p-[5px] focus:border-secondary;
+
+      @screen lg {
+        @apply w-1/3;
+      }
+    }
+
+    .search-input-button {
+      @apply absolute top-[35%] right-[20%];
+
+      @screen lg {
+        @apply right-[35%];
+      }
+
+      .search-input-button-icon {
+        @apply text-black;
+      }
+    }
+  }
+
+  .search-songs {
+    @apply flex flex-col;
+
+    .search-not-found {
+      @apply text-center;
+    }
+  }
+}
