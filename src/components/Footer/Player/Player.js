@@ -1,5 +1,6 @@
 import { useContext } from "react";
 import { AiFillPauseCircle, AiFillPlayCircle } from "react-icons/ai";
+import { BiSkipPrevious, BiSkipNext } from "react-icons/bi";
 import {
   BsFillVolumeDownFill,
   BsFillVolumeMuteFill,
@@ -42,12 +43,18 @@ function Player() {
       <div className="player-controls">
         <div className="controls-buttons">
           <div className="controls-play-button">
+            <button className="controls-switch-button">
+              <BiSkipPrevious className="controls-switch-button-icon" />
+            </button>
             <button onClick={togglePlay}>
               {isPlaying ? (
                 <AiFillPauseCircle className="play-toggle-button-icon" />
               ) : (
                 <AiFillPlayCircle className="play-toggle-button-icon" />
               )}
+            </button>
+            <button className="controls-switch-button">
+              <BiSkipNext className="controls-switch-button-icon" />
             </button>
           </div>
         </div>

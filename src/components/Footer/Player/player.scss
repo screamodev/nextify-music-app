@@ -10,6 +10,14 @@
 
     .controls-buttons {
       @apply flex justify-center;
+
+      .controls-switch-button {
+        @apply text-white;
+
+        .controls-switch-button-icon {
+          @apply h-6 w-6;
+        }
+      }
     }
 
     .controls-progress-bar-holder {
