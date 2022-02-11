@@ -1,5 +1,5 @@
 @mixin sort-by-default($color) {
-  @apply p-[5px] pr-[25px] mx-[15px] bg-#{$color} rounded-lg text-white font-bold relative;
+  @apply p-[5px] pr-[25px] bg-#{$color} rounded-lg text-white font-bold relative;
 }
 
 .sort-by-active {
