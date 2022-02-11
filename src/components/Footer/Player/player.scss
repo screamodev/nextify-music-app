@@ -12,10 +12,10 @@
       @apply flex justify-center;
 
       .controls-switch-button {
-        @apply text-white;
+        @apply text-white disabled:text-gray-600;
 
         .controls-switch-button-icon {
-          @apply h-6 w-6;
+          @apply h-8 w-8;
         }
       }
     }
