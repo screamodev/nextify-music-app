@@ -34,6 +34,8 @@ function Player() {
     toggleMute,
   } = useAudio(currentSong, isPlaying, onPause);
 
+  const { name, author } = currentSong;
+
   const getVolumeIcon = () => {
     if (volume > 0.5 && !isMuted) {
       return <BsFillVolumeUpFill className="volume-toggle-button-icon" />;
@@ -49,7 +51,10 @@ function Player() {
 
   return (
     <div className="player">
-      <div className="player-music-info" />
+      <div className="player-music-info">
+        <p className="player-current-music-info">{name}</p>
+        <p className="player-current-music-info">{author}</p>
+      </div>
       <div className="player-controls">
         <div className="controls-buttons">
           <div className="controls-play-button">
