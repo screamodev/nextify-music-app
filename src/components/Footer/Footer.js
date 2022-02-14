@@ -1,12 +1,12 @@
+import { useContext } from "react";
+import { PlayerContext } from "../../contexts/PlayerContext";
 import Player from "./Player";
 import "./footer.scss";
 
 function Footer() {
-  return (
-    <footer className="footer">
-      <Player />
-    </footer>
-  );
+  const { currentSong } = useContext(PlayerContext);
+
+  return <footer className="footer">{currentSong?.id && <Player />}</footer>;
 }
 
 export default Footer;
