@@ -1,20 +1,19 @@
 import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
-  songs: [
-    {
-      id: 1,
-      name: "Chrysothamnus Nutt.",
-      author: "Demetri",
-      url: "https://freemusicarchive.org/track/self-indulgent-is-not-an-insult/download",
-    },
-  ],
+  songs: [],
 };
 
 const playerSlice = createSlice({
   name: "player",
   initialState,
-  reducers: {},
+  reducers: {
+    addSongs(state, action) {
+      state.songs = action.payload;
+    },
+  },
 });
+
+export const { addSongs } = playerSlice.actions;
 
 export default playerSlice.reducer;

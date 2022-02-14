@@ -1,48 +1,48 @@
 import PropTypes from "prop-types";
-import { createContext, useMemo } from "react";
 import { useSelector } from "react-redux";
+import { createContext, useMemo } from "react";
 import { usePlayer } from "../hooks/usePlayer";
 
 export const PlayerContext = createContext({
   isPlaying: false,
-  progress: 0,
-  current: 0,
-  audioDuration: 0,
-  duration: 0,
-  isMuted: false,
-  togglePlay: () => {},
-  changeCurrentTime: () => {},
-  changeVolume: () => {},
-  toggleMute: () => {},
+  isPrevDisabled: false,
+  isNextDisabled: false,
+  currentSong: {},
+  setCurrentSong: () => {},
+  onPlay: () => {},
+  onPause: () => {},
+  onPrev: () => {},
+  onNext: () => {},
 });
 
 export function PlayerProvider({ children }) {
-  const { url } = useSelector(({ player }) => player.songs[0]);
+  const songs = useSelector((state) => state.player.songs);
   const {
     isPlaying,
-    progress,
-    current,
-    audioDuration,
-    volume,
-    isMuted,
-    togglePlay,
-    changeCurrentTime,
-    changeVolume,
-    toggleMute,
-  } = usePlayer(url);
+    isPrevDisabled,
+    isNextDisabled,
+    currentSong,
+    setCurrentSong,
+    onPlay,
+    onPause,
+    onPrev,
+    onNext,
+  } = usePlayer(songs);
 
-  const memoizedValue = useMemo(() => ({
-    isPlaying,
-    progress,
-    current,
-    audioDuration,
-    volume,
-    isMuted,
-    togglePlay,
-    changeCurrentTime,
-    changeVolume,
-    toggleMute,
-  }));
+  const memoizedValue = useMemo(
+    () => ({
+      isPlaying,
+      isPrevDisabled,
+      isNextDisabled,
+      currentSong,
+      setCurrentSong,
+      onPlay,
+      onPause,
+      onPrev,
+      onNext,
+    }),
+    [isPlaying, currentSong, isPrevDisabled, isNextDisabled]
+  );
 
   return (
     <PlayerContext.Provider value={memoizedValue}>
