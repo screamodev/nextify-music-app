@@ -11,7 +11,7 @@ function Song({ author, name, duration, id, url }) {
 
   const onPlaySong = () => {
     if (currentSong?.id !== id) {
-      setCurrentSong({ id, url });
+      setCurrentSong({ id, url, name, author });
     }
     onPlay();
   };

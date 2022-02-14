@@ -2,7 +2,11 @@
   @apply h-full flex justify-between items-center px-5;
 
   &-music-info {
-    @apply flex w-2/6;
+    @apply h-full flex flex-col w-2/6 overflow-hidden;
+
+    .player-current-music-info {
+      @apply first:text-white last:text-gray-300 last:text-[12px];
+    }
   }
 
   &-controls {
