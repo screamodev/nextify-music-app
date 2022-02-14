@@ -1,8 +1,12 @@
+@mixin song-info-default($color) {
+  @apply p-[10px] w-1/2 flex items-center overflow-hidden text-#{$color};
+}
+
 .song {
   @apply flex my-[10px];
 
   .play-button {
-    @apply p-[10px] text-white;
+    @apply p-[10px] text-gray-200 hover:text-white duration-200;
 
     .play-button-icon {
       @apply h-8 w-8;
@@ -10,7 +14,11 @@
   }
 
   .song-info {
-    @apply p-[10px] w-1/2 flex items-center overflow-hidden;
+    @include song-info-default("white");
+  }
+
+  .song-info-active {
+    @include song-info-default("primary");
   }
 
   .song-duration {

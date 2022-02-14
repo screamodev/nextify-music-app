@@ -9,6 +9,8 @@ function Song({ author, name, duration, id, url }) {
   const { currentSong, isPlaying, setCurrentSong, onPlay, onPause } =
     useContext(PlayerContext);
 
+  const isActive = currentSong?.id === id;
+
   const onPlaySong = () => {
     if (currentSong?.id !== id) {
       setCurrentSong({ id, url, name, author });
@@ -27,7 +29,9 @@ function Song({ author, name, duration, id, url }) {
           <AiFillPlayCircle className="play-button-icon" />
         </button>
       )}
-      <div className="song-info">{author}</div>
+      <div className={`song-info ${isActive ? "song-info-active" : ""}`}>
+        {author}
+      </div>
       <div className="song-info">{name}</div>
       <div className="song-duration">{duration}</div>
       <div className="song-add-buttons">
