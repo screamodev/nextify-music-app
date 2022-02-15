@@ -7,6 +7,7 @@ function FormInput({
   label,
   placeholder,
   type,
+  isTextarea,
 }) {
   const { error, touched } = getFieldMeta();
   const { name, onBlur, onChange, value } = field;
@@ -15,15 +16,27 @@ function FormInput({
   return (
     <div className="form-input-block">
       <label htmlFor={name}>{label}</label>
-      <input
-        className={errorMessage ? "error" : "form-input"}
-        placeholder={placeholder}
-        type={type}
-        id={name}
-        onBlur={onBlur}
-        onChange={onChange}
-        value={value}
-      />
+      {isTextarea ? (
+        <textarea
+          className={errorMessage ? "error" : "form-input"}
+          placeholder={placeholder}
+          type={type}
+          id={name}
+          onBlur={onBlur}
+          onChange={onChange}
+          value={value}
+        />
+      ) : (
+        <input
+          className={errorMessage ? "error" : "form-input"}
+          placeholder={placeholder}
+          type={type}
+          id={name}
+          onBlur={onBlur}
+          onChange={onChange}
+          value={value}
+        />
+      )}
       {errorMessage && touched && (
         <div className="error-message">{errorMessage}</div>
       )}
@@ -44,12 +57,14 @@ FormInput.propTypes = {
   form: PropTypes.shape({
     getFieldMeta: PropTypes.func,
   }).isRequired,
+  isTextarea: PropTypes.bool,
 };
 
 FormInput.defaultProps = {
   type: "text",
   label: "",
   placeholder: "",
+  isTextarea: false,
 };
 
 export default FormInput;

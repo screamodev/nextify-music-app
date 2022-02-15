@@ -1,0 +1,59 @@
+.create-playlist-wrapper {
+  @apply flex text-white flex-col h-[calc(100vh-131px)] text-xl p-[5px] w-full self-center bg-secondary-opacity overflow-y-auto;
+
+  .create-playlist-content {
+    @apply flex flex-col justify-center w-full self-center;
+
+    @screen lg {
+      @apply flex flex-row justify-center w-full self-center;
+    }
+
+    .playlist-photo {
+      @apply flex p-[20px] flex-col items-center;
+
+      @screen lg {
+        @apply flex p-[20px] flex-col items-start;
+      }
+
+      .playlist-photo-holder {
+        @apply h-[150px] w-[150px] mb-[15px] p-[20px] bg-neutral-900;
+      }
+
+      .playlist-upload-photo-button {
+        @apply p-2 bg-secondary rounded-lg w-1/2;
+
+        @screen lg {
+          @apply w-full;
+        }
+      }
+    }
+
+    .playlist-form {
+      @apply flex text-white flex-col items-center justify-center p-[20px];
+    }
+  }
+
+  .playlist-button {
+    @apply flex flex-col items-center;
+
+    .create-playlist-button {
+      @apply p-2 bg-primary rounded-lg;
+    }
+  }
+
+  .playlists-list-holder {
+    @apply flex flex-col items-center;
+  }
+
+  .playlists-list {
+    @apply p-[20px];
+
+    .playlists-list-item {
+      @apply mb-[10px];
+    }
+  }
+
+  .error-message {
+    @apply text-red-700 font-bold text-center p-[5px] mb-[5px] border border-red-700;
+  }
+}
