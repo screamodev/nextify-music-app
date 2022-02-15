@@ -5,10 +5,16 @@ import { PlayerProvider } from "../../contexts/PlayerContext";
 import AuthorizationPage from "../../pages/AuthorizationPage";
 import MyProfilePage from "../../pages/MyProfilePage";
 import SearchPage from "../../pages/SearchPage";
+import CreatePlaylistPage from "../../pages/CreatePlaylistPage";
 import GuestRoute from "../AuthRoutes/GuestRoute";
 import ProtectedRoute from "../AuthRoutes/ProtectedRoute";
 import store from "../../store";
-import { AUTH_PAGE, MAIN_PAGE, SEARCH } from "../../constants/routes";
+import {
+  AUTH_PAGE,
+  CREATE_PLAYLIST,
+  MAIN_PAGE,
+  SEARCH,
+} from "../../constants/routes";
 import "./app.scss";
 
 function App() {
@@ -24,6 +30,10 @@ function App() {
               <Route element={<ProtectedRoute />}>
                 <Route path={MAIN_PAGE} element={<MyProfilePage />} />
                 <Route path={SEARCH} element={<SearchPage />} />
+                <Route
+                  path={CREATE_PLAYLIST}
+                  element={<CreatePlaylistPage />}
+                />
               </Route>
             </Routes>
           </div>
