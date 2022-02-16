@@ -9,8 +9,9 @@ import "./createPlaylistPage.scss";
 function CreatePlaylistPage() {
   const userId = useSelector((state) => state.auth.user.id);
 
-  const addPlaylist = ({ name, description, songs }) => {
+  const addPlaylist = ({ name, description, songs }, { resetForm }) => {
     createPlaylist({ name, description, songs, userId });
+    resetForm();
   };
 
   return (
