@@ -1,3 +1,4 @@
+import { useSelector } from "react-redux";
 import { NavLink } from "react-router-dom";
 import { bubble as Menu } from "react-burger-menu";
 import {
@@ -9,6 +10,8 @@ import {
 import "./sidebar.scss";
 
 function Sidebar() {
+  const userPlaylists = useSelector((state) => state.playlists.playlists);
+
   return (
     <aside>
       <Menu className="aside-menu">
@@ -31,9 +34,9 @@ function Sidebar() {
         <hr className="dividing-line" />
         <div className="playlists">
           <ul className="playlists-list">
-            <li>Reggae</li>
-            <li>Rock</li>
-            <li>Pop</li>
+            {userPlaylists.map(({ id, name }) => (
+              <li key={id}>{name}</li>
+            ))}
           </ul>
         </div>
       </Menu>

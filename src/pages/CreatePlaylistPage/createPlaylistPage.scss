@@ -43,10 +43,18 @@
 
   .playlists-list-holder {
     @apply flex flex-col items-center;
+
+    .playlists-list-title {
+      @apply text-[22px];
+    }
   }
 
   .playlists-list {
-    @apply p-[20px];
+    @apply flex bg-secondary-opacity w-full items-center p-[20px];
+
+    @screen lg {
+      @apply w-1/4;
+    }
 
     .playlists-list-item {
       @apply mb-[10px];

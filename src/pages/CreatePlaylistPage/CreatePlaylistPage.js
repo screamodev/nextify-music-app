@@ -1,6 +1,7 @@
 import { Field, Form, Formik } from "formik";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { createPlaylistSchema } from "../../schemas/createPlaylistSchema";
+import { getPlaylists } from "../../store/playlistsSlice";
 import { createPlaylist } from "../../api/playlistApi";
 import MainLayout from "../../components/MainLayout";
 import FormInput from "../../components/common/FormInput";
@@ -8,10 +9,21 @@ import "./createPlaylistPage.scss";
 
 function CreatePlaylistPage() {
   const userId = useSelector((state) => state.auth.user.id);
+  const playlists = useSelector((state) => state.playlists.playlists);
+  const dispatch = useDispatch();
 
-  const addPlaylist = ({ name, description, songs }, { resetForm }) => {
-    createPlaylist({ name, description, songs, userId });
-    resetForm();
+  const createPlaylistHandler = (
+    { name, description, songs },
+    { resetForm }
+  ) => {
+    createPlaylist({ name, description, songs, userId })
+      .then(() => {
+        dispatch(getPlaylists(userId));
+        resetForm();
+      })
+      .catch((error) => {
+        alert(error.message);
+      });
   };
 
   return (
@@ -32,7 +44,7 @@ function CreatePlaylistPage() {
                 songs: [],
               }}
               validationSchema={createPlaylistSchema}
-              onSubmit={addPlaylist}
+              onSubmit={createPlaylistHandler}
             >
               <Form>
                 <Field
@@ -56,8 +68,13 @@ function CreatePlaylistPage() {
           </div>
         </div>
         <div className="playlists-list-holder">
+          <p className="playlists-list-title">Your Playlists</p>
           <ul className="playlists-list">
-            <li className="playlists-list-item" />
+            {playlists.map(({ id, name }) => (
+              <li key={id} className="playlists-list-item">
+                {name}
+              </li>
+            ))}
           </ul>
         </div>
       </div>
