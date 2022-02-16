@@ -1,5 +1,5 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
-import { getUserPlaylists } from "../api/playlistApi";
+import { createPlaylist, getUserPlaylists } from "../api/playlistApi";
 
 export const getPlaylists = createAsyncThunk(
   "playlists/getPlaylists",
@@ -10,19 +10,37 @@ export const getPlaylists = createAsyncThunk(
   }
 );
 
+export const addPlaylist = createAsyncThunk(
+  "playlists/addPlaylist",
+  async (playlist, thunkAPI) => {
+    const { data, status } = await createPlaylist(playlist);
+
+    if (status !== 201) {
+      return thunkAPI.rejectWithValue(data);
+    }
+
+    return data;
+  }
+);
+
 const initialState = {
   playlists: [],
 };
 
-const onFulfilled = (state, { payload: { playlists } }) => {
+const onGetPlaylistsFulfilled = (state, { payload: { playlists } }) => {
   state.playlists = playlists.reverse();
+};
+
+const onAddPlaylistFulfilled = (state, { payload }) => {
+  state.playlists.unshift(payload);
 };
 
 const playlistsSlice = createSlice({
   name: "playlists",
   initialState,
   extraReducers: {
-    [getPlaylists.fulfilled]: onFulfilled,
+    [getPlaylists.fulfilled]: onGetPlaylistsFulfilled,
+    [addPlaylist.fulfilled]: onAddPlaylistFulfilled,
   },
 });
 

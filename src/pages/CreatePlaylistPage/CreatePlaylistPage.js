@@ -1,8 +1,7 @@
 import { Field, Form, Formik } from "formik";
 import { useDispatch, useSelector } from "react-redux";
 import { createPlaylistSchema } from "../../schemas/createPlaylistSchema";
-import { getPlaylists } from "../../store/playlistsSlice";
-import { createPlaylist } from "../../api/playlistApi";
+import { addPlaylist } from "../../store/playlistsSlice";
 import MainLayout from "../../components/MainLayout";
 import FormInput from "../../components/common/FormInput";
 import "./createPlaylistPage.scss";
@@ -16,14 +15,8 @@ function CreatePlaylistPage() {
     { name, description, songs },
     { resetForm }
   ) => {
-    createPlaylist({ name, description, songs, userId })
-      .then(() => {
-        dispatch(getPlaylists(userId));
-        resetForm();
-      })
-      .catch((error) => {
-        alert(error.message);
-      });
+    dispatch(addPlaylist({ name, description, songs, userId }));
+    resetForm();
   };
 
   return (
