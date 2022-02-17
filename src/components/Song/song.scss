@@ -28,6 +28,10 @@
   .song-add-buttons {
     @apply flex;
 
+    .song-add-button-with-dropdown {
+      @apply flex items-center relative;
+    }
+
     .add-to-button {
       @apply p-[5px];
 
