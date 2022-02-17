@@ -5,3 +5,6 @@ export const createPlaylist = (playlist) =>
 
 export const getUserPlaylists = (userId) =>
   instance.get(`users/${userId}/playlists?_sort=date`);
+
+export const addSongToPlaylist = (playListId, playlist) =>
+  instance.patch(`playlists/${playListId}`, playlist);
