@@ -15,7 +15,8 @@ function CreatePlaylistPage() {
     { name, description, songs },
     { resetForm }
   ) => {
-    dispatch(addPlaylist({ name, description, songs, userId }));
+    const date = new Date().getTime();
+    dispatch(addPlaylist({ name, description, songs, date, userId }));
     resetForm();
   };
 
@@ -35,6 +36,7 @@ function CreatePlaylistPage() {
                 name: "",
                 description: "",
                 songs: [],
+                date: "",
               }}
               validationSchema={createPlaylistSchema}
               onSubmit={createPlaylistHandler}

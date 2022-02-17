@@ -4,4 +4,4 @@ export const createPlaylist = (playlist) =>
   instance.post("playlists", playlist);
 
 export const getUserPlaylists = (userId) =>
-  instance.get(`users/${userId}?_embed=playlists`);
+  instance.get(`users/${userId}/playlists?_sort=date`);

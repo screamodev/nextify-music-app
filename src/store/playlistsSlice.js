@@ -27,8 +27,8 @@ const initialState = {
   playlists: [],
 };
 
-const onGetPlaylistsFulfilled = (state, { payload: { playlists } }) => {
-  state.playlists = playlists.reverse();
+const onGetPlaylistsFulfilled = (state, { payload }) => {
+  state.playlists = payload;
 };
 
 const onAddPlaylistFulfilled = (state, { payload }) => {
