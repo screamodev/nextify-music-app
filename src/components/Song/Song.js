@@ -1,13 +1,43 @@
 import PropTypes from "prop-types";
-import { useContext } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { useContext, useState } from "react";
 import { IoIosAddCircle, IoMdHeart } from "react-icons/io";
 import { AiFillPauseCircle, AiFillPlayCircle } from "react-icons/ai";
+import { addSongToPlaylist } from "../../api/playlistApi";
 import { PlayerContext } from "../../contexts/PlayerContext";
+import { getPlaylists } from "../../store/playlistsSlice";
+import SelectPlaylist from "./SelectPlaylist";
 import "./song.scss";
 
 function Song({ author, name, duration, id, url }) {
   const { currentSong, isPlaying, setCurrentSong, onPlay, onPause } =
     useContext(PlayerContext);
+
+  const userId = useSelector((state) => state.auth.user.id);
+  const playlists = useSelector((state) => state.playlists.playlists);
+  const [isSelectShown, setIsSelectShown] = useState(false);
+  const dispatch = useDispatch();
+
+  const openSelect = () => {
+    setIsSelectShown(true);
+  };
+
+  const closeSelect = () => {
+    setIsSelectShown(false);
+  };
+
+  const addSong = (playlist) => {
+    addSongToPlaylist(playlist.id, {
+      songsIds: [...playlist.songsIds, id],
+    })
+      .then(() => {
+        dispatch(getPlaylists(userId));
+        closeSelect();
+      })
+      .catch((error) => {
+        alert(error.message);
+      });
+  };
 
   const isActive = currentSong?.id === id;
 
@@ -35,9 +65,19 @@ function Song({ author, name, duration, id, url }) {
       <div className="song-info">{name}</div>
       <div className="song-duration">{duration}</div>
       <div className="song-add-buttons">
-        <button className="add-to-button">
-          <IoIosAddCircle className="add-to-button-icon" />
-        </button>
+        <div className="song-add-button-with-dropdown">
+          <button onClick={openSelect} className="add-to-button">
+            <IoIosAddCircle className="add-to-button-icon" />
+          </button>
+          {isSelectShown && (
+            <SelectPlaylist
+              playlists={playlists}
+              addSong={addSong}
+              songId={id}
+              closeSelect={closeSelect}
+            />
+          )}
+        </div>
         <button className="add-to-button">
           <IoMdHeart className="add-to-button-icon" />
         </button>
