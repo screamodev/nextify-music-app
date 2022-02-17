@@ -1,10 +1,20 @@
 import PropTypes from "prop-types";
+import { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { getPlaylists } from "../../store/playlistsSlice";
 import Nav from "../Header";
 import Sidebar from "../Sidebar";
 import Footer from "../Footer";
 import "./mainLayout.scss";
 
 function MainLayout({ children }) {
+  const userId = useSelector((state) => state.auth.user.id);
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(getPlaylists(userId));
+  }, [userId]);
+
   return (
     <>
       <div className="wrapper-main">
