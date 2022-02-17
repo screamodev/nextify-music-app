@@ -12,11 +12,11 @@ function CreatePlaylistPage() {
   const dispatch = useDispatch();
 
   const createPlaylistHandler = (
-    { name, description, songsId },
+    { name, description, songsIds },
     { resetForm }
   ) => {
     const date = new Date().getTime();
-    dispatch(addPlaylist({ name, description, songsId, date, userId }));
+    dispatch(addPlaylist({ name, description, songsIds, date, userId }));
     resetForm();
   };
 
@@ -35,7 +35,7 @@ function CreatePlaylistPage() {
               initialValues={{
                 name: "",
                 description: "",
-                songsId: [],
+                songsIds: [],
                 date: "",
               }}
               validationSchema={createPlaylistSchema}
