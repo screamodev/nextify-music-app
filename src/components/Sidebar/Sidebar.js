@@ -4,6 +4,7 @@ import { bubble as Menu } from "react-burger-menu";
 import {
   CREATE_PLAYLIST,
   FAVORITE,
+  PLAYLISTS,
   PROFILE,
   SEARCH,
 } from "../../constants/routes";
@@ -35,7 +36,11 @@ function Sidebar() {
         <div className="playlists">
           <ul className="playlists-list">
             {userPlaylists.map(({ id, name }) => (
-              <li key={id}>{name}</li>
+              <li key={id}>
+                <NavLink className="nav-item" to={`${PLAYLISTS}/${id}`}>
+                  {name}
+                </NavLink>
+              </li>
             ))}
           </ul>
         </div>
