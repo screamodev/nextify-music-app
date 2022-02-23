@@ -1,7 +1,9 @@
 import { Field, Form, Formik } from "formik";
 import { useDispatch, useSelector } from "react-redux";
+import { NavLink } from "react-router-dom";
 import { createPlaylistSchema } from "../../schemas/createPlaylistSchema";
 import { addPlaylist } from "../../store/playlistsSlice";
+import { PLAYLISTS } from "../../constants/routes";
 import playlistDefaultImage from "../../assets/images/default-playlist-img.jpeg";
 import MainLayout from "../../components/MainLayout";
 import FormInput from "../../components/common/FormInput";
@@ -71,14 +73,16 @@ function CreatePlaylistPage() {
           <p className="playlists-list-title">Your Playlists</p>
           <div className="playlist-cards">
             {playlists.map(({ id, name }) => (
-              <div key={id} className="playlist-card">
-                <img
-                  className="playlist-card-img"
-                  src={playlistDefaultImage}
-                  alt="playlist"
-                />
-                <p className="playlist-card-text">{name}</p>
-              </div>
+              <NavLink to={`${PLAYLISTS}/${id}`}>
+                <div key={id} className="playlist-card">
+                  <img
+                    className="playlist-card-img"
+                    src={playlistDefaultImage}
+                    alt="playlist"
+                  />
+                  <p className="playlist-card-text">{name}</p>
+                </div>
+              </NavLink>
             ))}
           </div>
         </div>
