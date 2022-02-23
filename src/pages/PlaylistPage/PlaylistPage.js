@@ -1,17 +1,22 @@
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { unwrapResult } from "@reduxjs/toolkit";
-import { Field, Form, Formik } from "formik";
 import { TiEdit } from "react-icons/ti";
-import { useParams } from "react-router-dom";
-import { getPickedPlaylist, getSongs } from "../../api/playlistApi";
+import { MdDeleteForever } from "react-icons/md";
+import { useNavigate, useParams } from "react-router-dom";
+import {
+  getPickedPlaylist,
+  getSongs,
+  deletePlaylist,
+} from "../../api/playlistApi";
 import { useSort } from "../../hooks/useSort";
-import { createPlaylistSchema } from "../../schemas/createPlaylistSchema";
-import { editPlaylist } from "../../store/playlistsSlice";
+import { deletePlaylistSong, editPlaylist } from "../../store/playlistsSlice";
+import { SEARCH } from "../../constants/routes";
 import MainLayout from "../../components/MainLayout";
 import SortBy from "../../components/SortBy";
 import Song from "../../components/Song";
-import FormInput from "../../components/common/FormInput";
+import ConfirmModal from "../../components/ConfirmModal";
+import EditPlaylistForm from "../../components/EditPlaylistForm";
 import playlistDefaultImage from "../../assets/images/default-playlist-img.jpeg";
 import "./playlistPage.scss";
 
@@ -21,12 +26,15 @@ function PlaylistPage() {
   const userId = useSelector((state) => state.auth.user.id);
   const { id: playlistId } = useParams();
   const dispatch = useDispatch();
+  const navigate = useNavigate();
 
   const [currentPlaylist, setCurrentPlaylist] = useState(null);
   const [playlistSongs, setPlaylistSongs] = useState(null);
   const [isEditMode, setEditMode] = useState(false);
+  const [isConfirmDeleteModalOpen, setIsConfirmDeleteModalOpen] =
+    useState(false);
 
-  useEffect(() => {
+  const fetchPlaylistSongs = () => {
     setPlaylistSongs([]);
     getPickedPlaylist(userId, playlistId).then(({ data: [playlist] }) => {
       setCurrentPlaylist(playlist);
@@ -43,6 +51,10 @@ function PlaylistPage() {
           alert(error.message);
         });
     });
+  };
+
+  useEffect(() => {
+    fetchPlaylistSongs();
   }, [playlistId, sortState, isEditMode]);
 
   const handleEditPlaylist = ({ name, description }, { resetForm }) => {
@@ -55,6 +67,31 @@ function PlaylistPage() {
         alert(error.message);
       });
     resetForm();
+  };
+
+  const handleDeletePlaylist = () => {
+    deletePlaylist({ playlistId })
+      .then(() => {
+        navigate(SEARCH);
+      })
+      .catch((error) => {
+        alert(error.message);
+      });
+  };
+
+  const handleDeletePlaylistSong = (songId) => {
+    const updatedPlaylistSongsIds = currentPlaylist.songsIds.filter(
+      (id) => id !== songId
+    );
+    dispatch(
+      deletePlaylistSong({ playlistId, songsIds: updatedPlaylistSongsIds })
+    )
+      .then(unwrapResult)
+      .then(() => fetchPlaylistSongs());
+  };
+
+  const closeModal = () => {
+    setIsConfirmDeleteModalOpen(false);
   };
 
   return (
@@ -74,33 +111,10 @@ function PlaylistPage() {
             </div>
             <div className="playlist-info-holder">
               {isEditMode ? (
-                <Formik
-                  initialValues={{
-                    name: currentPlaylist?.name,
-                    description: currentPlaylist?.description,
-                  }}
-                  validationSchema={createPlaylistSchema}
-                  onSubmit={handleEditPlaylist}
-                >
-                  <Form className="edit-playlist-form">
-                    <Field
-                      component={FormInput}
-                      name="name"
-                      placeholder="name..."
-                    />
-                    <Field
-                      component={FormInput}
-                      name="description"
-                      placeholder="description..."
-                      isTextarea
-                    />
-                    <div className="playlist-button">
-                      <button className="edit-playlist-button">
-                        Save changes
-                      </button>
-                    </div>
-                  </Form>
-                </Formik>
+                <EditPlaylistForm
+                  currentPlaylist={currentPlaylist}
+                  onEditPlaylist={handleEditPlaylist}
+                />
               ) : (
                 <div className="playlist-info">
                   <p className="playlist-info-text">{currentPlaylist?.name}</p>
@@ -116,6 +130,22 @@ function PlaylistPage() {
                 </div>
               )}
             </div>
+            <div className="delete-playlist-block">
+              {isConfirmDeleteModalOpen ? (
+                <ConfirmModal
+                  onConfirm={handleDeletePlaylist}
+                  closeModal={closeModal}
+                  isOpen={isConfirmDeleteModalOpen}
+                />
+              ) : (
+                <button
+                  onClick={() => setIsConfirmDeleteModalOpen(true)}
+                  className="delete-playlist-block-delete-button"
+                >
+                  Delete playlist
+                </button>
+              )}
+            </div>
           </div>
           <div className="playlist-songs">
             <SortBy clear={clear} sortState={sortState} onSortBy={onSortBy} />
@@ -123,14 +153,23 @@ function PlaylistPage() {
               {playlistSongs?.length ? (
                 playlistSongs?.map(
                   ({ author, name: songName, duration, id: songId, url }) => (
-                    <Song
-                      author={author}
-                      name={songName}
-                      duration={duration}
-                      id={songId}
-                      key={songId}
-                      url={url}
-                    />
+                    <div key={songId} className="playlist-song-delete">
+                      <Song
+                        author={author}
+                        name={songName}
+                        duration={duration}
+                        id={songId}
+                        url={url}
+                      />
+                      <div className="playlist-song-delete-button-block">
+                        <button
+                          onClick={() => handleDeletePlaylistSong(songId)}
+                          className="playlist-song-delete-button"
+                        >
+                          <MdDeleteForever className="playlist-song-delete-button-icon" />
+                        </button>
+                      </div>
+                    </div>
                   )
                 )
               ) : (

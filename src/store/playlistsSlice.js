@@ -3,6 +3,7 @@ import {
   createPlaylist,
   editPlaylistInfo,
   getUserPlaylists,
+  removePlaylistSong,
 } from "../api/playlistApi";
 
 export const getPlaylists = createAsyncThunk(
@@ -40,6 +41,19 @@ export const editPlaylist = createAsyncThunk(
   }
 );
 
+export const deletePlaylistSong = createAsyncThunk(
+  "playlists/deletePlaylistSong",
+  async (updatedPlaylist, thunkAPI) => {
+    const { data, status } = await removePlaylistSong(updatedPlaylist);
+
+    if (status !== 200) {
+      return thunkAPI.rejectWithValue(data);
+    }
+
+    return data;
+  }
+);
+
 const initialState = {
   playlists: [],
 };
@@ -52,7 +66,7 @@ const onAddPlaylistFulfilled = (state, { payload }) => {
   state.playlists.unshift(payload);
 };
 
-const onEditPlaylistFulfilled = (state, { payload }) => {
+const updatePlaylistsFulfilled = (state, { payload }) => {
   const updatedPlaylist = state.playlists.findIndex(
     (playlist) => playlist.id === payload.id
   );
@@ -67,7 +81,8 @@ const playlistsSlice = createSlice({
   extraReducers: {
     [getPlaylists.fulfilled]: onGetPlaylistsFulfilled,
     [addPlaylist.fulfilled]: onAddPlaylistFulfilled,
-    [editPlaylist.fulfilled]: onEditPlaylistFulfilled,
+    [editPlaylist.fulfilled]: updatePlaylistsFulfilled,
+    [deletePlaylistSong.fulfilled]: updatePlaylistsFulfilled,
   },
 });
 

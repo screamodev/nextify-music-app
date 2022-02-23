@@ -46,6 +46,14 @@
           }
         }
       }
+
+      .delete-playlist-block {
+        @apply w-1/2 flex flex-col items-end p-[20px];
+
+        &-delete-button {
+          @apply p-[10px] bg-primary rounded-lg hover:opacity-90 duration-700;
+        }
+      }
     }
 
     .playlist-songs {
@@ -53,6 +61,24 @@
 
       @screen lg {
         @apply flex flex-col;
+      }
+
+      .playlist-songs-list {
+        .playlist-song-delete {
+          @apply flex;
+
+          &-button-block {
+            @apply flex;
+
+            .playlist-song-delete-button {
+              @apply p-[5px];
+
+              &-icon {
+                @apply h-6 w-6 text-white;
+              }
+            }
+          }
+        }
       }
     }
 
@@ -62,14 +88,6 @@
 
     .error-message {
       @apply text-red-700 font-bold text-center p-[5px] mb-[5px] border border-red-700;
-    }
-
-    .edit-playlist-form {
-      @apply flex flex-col items-center m-[10px];
-
-      .edit-playlist-button {
-        @apply self-center p-2 bg-primary rounded-lg;
-      }
     }
   }
 }

@@ -17,3 +17,9 @@ export const getSongs = ({ field, order }) =>
 
 export const editPlaylistInfo = ({ name, description, playlistId }) =>
   instance.patch(`playlists/${playlistId}`, { name, description });
+
+export const deletePlaylist = ({ playlistId }) =>
+  instance.delete(`playlists/${playlistId}`);
+
+export const removePlaylistSong = ({ playlistId, songsIds }) =>
+  instance.patch(`playlists/${playlistId}`, { songsIds });
