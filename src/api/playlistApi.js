@@ -8,3 +8,9 @@ export const getUserPlaylists = (userId) =>
 
 export const addSongToPlaylist = (playListId, playlist) =>
   instance.patch(`playlists/${playListId}`, playlist);
+
+export const getPickedPlaylist = (userId, playlistId) =>
+  instance.get(`users/${userId}/playlists?id=${playlistId}`);
+
+export const getSongs = ({ field, order }) =>
+  instance.get(`songs/?_sort=${field}&_order=${order}`);

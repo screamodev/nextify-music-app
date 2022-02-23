@@ -1,0 +1,51 @@
+.playlist-wrapper {
+  @apply flex text-white flex-col h-[calc(100vh-131px)] text-xl p-[5px] w-full self-center bg-secondary-opacity overflow-y-auto;
+
+  .playlist-content {
+    @apply w-full self-center;
+
+    @screen lg {
+      @apply p-[25px] w-2/3 text-lg;
+    }
+
+    .playlist-info-block {
+      @apply flex;
+
+      .playlist-photo-holder {
+        @apply flex flex-col items-center m-[10px];
+
+        .playlist-photo {
+          @apply h-[200px] w-[200px] mb-[15px] border-secondary border-[1px] bg-neutral-900;
+        }
+
+        .playlist-upload-photo-button {
+          @apply p-2 bg-secondary rounded-lg w-1/2;
+
+          @screen lg {
+            @apply w-full;
+          }
+        }
+      }
+
+      .playlist-info {
+        @apply flex flex-col justify-center m-[10px] min-w-[200px] max-w-[400px];
+
+        .playlist-info-text {
+          @apply text-lg m-4 first:text-3xl max-h-[200px] text-ellipsis overflow-hidden;
+        }
+      }
+    }
+
+    .playlist-songs {
+      @apply flex flex-col mx-[20px];
+
+      @screen lg {
+        @apply flex flex-col;
+      }
+    }
+
+    .playlist-empty {
+      @apply flex justify-center;
+    }
+  }
+}

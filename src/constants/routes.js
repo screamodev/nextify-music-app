@@ -9,3 +9,5 @@ export const SEARCH = "/search";
 export const CREATE_PLAYLIST = "/create-playlist";
 
 export const FAVORITE = "/favorite";
+
+export const PLAYLISTS = "/playlists";

@@ -1,22 +1,18 @@
 import { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
 import { MdClear } from "react-icons/md";
+import { searchSongs } from "../../api/searchApi";
+import { addSongs } from "../../store/playerReducer";
+import { useSort } from "../../hooks/useSort";
 import MainLayout from "../../components/MainLayout";
 import Song from "../../components/Song";
 import SortBy from "../../components/SortBy";
-import { searchSongs } from "../../api/searchApi";
-import { ASCENDING, DESCENDING } from "../../constants/sortDirections";
-import { addSongs } from "../../store/playerReducer";
 import "./searchPage.scss";
 
-const initialSortState = {
-  field: "",
-  order: "",
-};
-
 function SearchPage() {
+  const { clear, sortState, onSortBy } = useSort();
+
   const [searchInput, setSearchInput] = useState("");
-  const [sortState, setSortState] = useState(initialSortState);
   const [songs, setSongs] = useState([]);
   const dispatch = useDispatch();
 
@@ -42,21 +38,6 @@ function SearchPage() {
 
   const clearInput = () => {
     setSearchInput("");
-  };
-
-  const getOrderSort = () =>
-    sortState.order === ASCENDING ? DESCENDING : ASCENDING;
-
-  const onSortBy = (field) => {
-    setSortState(({ field: prevField }) => ({
-      field,
-      order: prevField === field ? getOrderSort() : ASCENDING,
-    }));
-  };
-
-  const clear = (e) => {
-    e.stopPropagation();
-    setSortState(initialSortState);
   };
 
   return (

@@ -8,11 +8,13 @@ import SearchPage from "../../pages/SearchPage";
 import CreatePlaylistPage from "../../pages/CreatePlaylistPage";
 import GuestRoute from "../AuthRoutes/GuestRoute";
 import ProtectedRoute from "../AuthRoutes/ProtectedRoute";
+import PlaylistPage from "../../pages/PlaylistPage";
 import store from "../../store";
 import {
   AUTH_PAGE,
   CREATE_PLAYLIST,
   MAIN_PAGE,
+  PLAYLISTS,
   SEARCH,
 } from "../../constants/routes";
 import "./app.scss";
@@ -34,6 +36,7 @@ function App() {
                   path={CREATE_PLAYLIST}
                   element={<CreatePlaylistPage />}
                 />
+                <Route path={`${PLAYLISTS}/:id`} element={<PlaylistPage />} />
               </Route>
             </Routes>
           </div>
