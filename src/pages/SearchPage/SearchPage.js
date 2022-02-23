@@ -1,16 +1,16 @@
 import { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
 import { MdClear } from "react-icons/md";
-import MainLayout from "../../components/MainLayout";
-import Song from "../../components/Song";
-import SortBy from "../../components/SortBy";
 import { searchSongs } from "../../api/searchApi";
 import { addSongs } from "../../store/playerReducer";
 import { useSort } from "../../hooks/useSort";
+import MainLayout from "../../components/MainLayout";
+import Song from "../../components/Song";
+import SortBy from "../../components/SortBy";
 import "./searchPage.scss";
 
 function SearchPage() {
-  const { sortState, onSortBy, clear } = useSort();
+  const { clear, sortState, onSortBy } = useSort();
 
   const [searchInput, setSearchInput] = useState("");
   const [songs, setSongs] = useState([]);

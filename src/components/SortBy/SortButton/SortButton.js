@@ -4,6 +4,11 @@ import { ASCENDING, DESCENDING } from "../../../constants/sortDirections";
 import "./sortButton.scss";
 
 function SortButton({ name, order, isActive, onSortBy, clear }) {
+  const clearHandler = (e) => {
+    e.stopPropagation();
+    clear();
+  };
+
   const getDirectionArrow = () => {
     if (order === ASCENDING) {
       return <MdArrowDropUp className="sort-order-arrow" />;
@@ -22,7 +27,7 @@ function SortButton({ name, order, isActive, onSortBy, clear }) {
       {name}
       {isActive && (
         <>
-          <span onClick={clear}>
+          <span onClick={clearHandler}>
             <MdClear className="stop-sort" />
           </span>
           <span>{getDirectionArrow()}</span>

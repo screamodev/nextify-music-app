@@ -19,14 +19,13 @@ export function useSort() {
     }));
   };
 
-  const clear = (e) => {
-    e.stopPropagation();
+  const clear = () => {
     setSortState(initialSortState);
   };
 
   return {
+    clear,
     sortState,
     onSortBy,
-    clear,
   };
 }

@@ -10,7 +10,7 @@ import playlistDefaultImage from "../../assets/images/default-playlist-img.jpeg"
 import "./playlistPage.scss";
 
 function PlaylistPage() {
-  const { sortState, onSortBy, clear } = useSort();
+  const { clear, sortState, onSortBy } = useSort();
 
   const userId = useSelector((state) => state.auth.user.id);
   const { id: playlistId } = useParams();
