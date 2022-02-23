@@ -14,3 +14,6 @@ export const getPickedPlaylist = (userId, playlistId) =>
 
 export const getSongs = ({ field, order }) =>
   instance.get(`songs/?_sort=${field}&_order=${order}`);
+
+export const editPlaylistInfo = ({ name, description, playlistId }) =>
+  instance.patch(`playlists/${playlistId}`, { name, description });
