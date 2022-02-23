@@ -1,8 +1,8 @@
 .select-playlists-list {
   @apply outline-none text-neutral-400 absolute bottom-[25px] right-[20px] bg-neutral-900 z-20 w-[150px] p-[15px];
 
-  &-list-element {
-    @apply text-left;
+  &-element {
+    @apply text-left text-ellipsis overflow-hidden;
   }
 
   .playlist-list-line {
@@ -10,6 +10,6 @@
   }
 
   .playlists-list-button {
-    @apply hover:text-white duration-300 overflow-hidden disabled:text-neutral-400;
+    @apply hover:text-white duration-300 disabled:text-neutral-600;
   }
 }
