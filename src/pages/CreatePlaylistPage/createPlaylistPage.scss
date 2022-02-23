@@ -16,7 +16,7 @@
       }
 
       .playlist-photo-holder {
-        @apply h-[150px] w-[150px] mb-[15px] p-[20px] bg-neutral-900;
+        @apply h-[200px] w-[200px] border-[1px] border-secondary mb-[15px] p-[20px] bg-neutral-900;
       }
 
       .playlist-upload-photo-button {
@@ -45,19 +45,27 @@
     @apply flex flex-col items-center;
 
     .playlists-list-title {
-      @apply text-[22px];
+      @apply text-[22px] m-4;
     }
   }
 
-  .playlists-list {
-    @apply flex bg-secondary-opacity w-full items-center p-[20px];
+  .playlist-cards {
+    @apply flex justify-around bg-secondary-opacity w-full p-[20px] flex-wrap;
 
     @screen lg {
-      @apply w-1/4;
+      @apply w-1/3;
     }
 
-    .playlists-list-item {
-      @apply mb-[10px];
+    .playlist-card {
+      @apply flex border-[1px] m-4 w-[200px] h-[200px] p-[15px] relative cursor-pointer hover:scale-95 hover:border-secondary duration-300;
+
+      .playlist-card-img {
+        @apply absolute top-0 left-0;
+      }
+
+      .playlist-card-text {
+        @apply text-ellipsis overflow-hidden z-10 self-end;
+      }
     }
   }
 
