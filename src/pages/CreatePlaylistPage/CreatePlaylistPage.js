@@ -73,8 +73,8 @@ function CreatePlaylistPage() {
           <p className="playlists-list-title">Your Playlists</p>
           <div className="playlist-cards">
             {playlists.map(({ id, name }) => (
-              <NavLink to={`${PLAYLISTS}/${id}`}>
-                <div key={id} className="playlist-card">
+              <NavLink key={id} to={`${PLAYLISTS}/${id}`}>
+                <div className="playlist-card">
                   <img
                     className="playlist-card-img"
                     src={playlistDefaultImage}
