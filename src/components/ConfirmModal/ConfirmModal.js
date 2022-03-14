@@ -21,7 +21,7 @@ function ConfirmModal({ onConfirm, closeModal, isOpen }) {
 ConfirmModal.propTypes = {
   onConfirm: PropTypes.func.isRequired,
   closeModal: PropTypes.func.isRequired,
-  isOpen: PropTypes.func.isRequired,
+  isOpen: PropTypes.bool.isRequired,
 };
 
 export default ConfirmModal;
