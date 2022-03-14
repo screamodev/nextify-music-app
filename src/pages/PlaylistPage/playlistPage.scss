@@ -27,11 +27,31 @@
         }
       }
 
-      .playlist-info {
-        @apply flex flex-col justify-center m-[10px] min-w-[200px] max-w-[400px];
+      .playlist-info-holder {
+        @apply flex flex-col m-[10px] min-w-[200px] max-w-[400px];
 
-        .playlist-info-text {
-          @apply text-lg m-4 first:text-3xl max-h-[200px] text-ellipsis overflow-hidden;
+        .playlist-info {
+          @apply relative flex flex-col justify-around;
+
+          .playlist-info-text {
+            @apply text-lg m-4 first:text-3xl max-h-[200px] text-ellipsis overflow-hidden;
+          }
+
+          .set-edit-button {
+            @apply p-1 rounded-lg absolute top-[18px] right-[-20px];
+
+            .set-edit-button-icon {
+              @apply h-[25px] w-[25px];
+            }
+          }
+        }
+      }
+
+      .delete-playlist-block {
+        @apply w-1/2 flex flex-col items-end p-[20px];
+
+        &-delete-button {
+          @apply p-[10px] bg-primary rounded-lg hover:opacity-90 duration-700;
         }
       }
     }
@@ -42,10 +62,32 @@
       @screen lg {
         @apply flex flex-col;
       }
+
+      .playlist-songs-list {
+        .playlist-song-delete {
+          @apply flex;
+
+          &-button-block {
+            @apply flex;
+
+            .playlist-song-delete-button {
+              @apply p-[5px];
+
+              &-icon {
+                @apply h-6 w-6 text-white;
+              }
+            }
+          }
+        }
+      }
     }
 
     .playlist-empty {
       @apply flex justify-center;
+    }
+
+    .error-message {
+      @apply text-red-700 font-bold text-center p-[5px] mb-[5px] border border-red-700;
     }
   }
 }
