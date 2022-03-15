@@ -1,6 +1,6 @@
 import PropTypes from "prop-types";
 import { Field, Form, Formik } from "formik";
-import { createPlaylistSchema } from "../../schemas/createPlaylistSchema";
+import { playlistSchema } from "../../schemas/playlistSchema";
 import FormInput from "../common/FormInput";
 import "./editPlaylistForm.scss";
 
@@ -14,7 +14,7 @@ function EditPlaylistForm({
         name,
         description,
       }}
-      validationSchema={createPlaylistSchema}
+      validationSchema={playlistSchema}
       onSubmit={onEditPlaylist}
     >
       <Form className="edit-playlist-form">

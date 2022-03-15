@@ -1,5 +1,5 @@
 import * as Yup from "yup";
 
-export const createPlaylistSchema = Yup.object().shape({
+export const playlistSchema = Yup.object().shape({
   name: Yup.string().required("Required"),
 });

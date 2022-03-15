@@ -1,7 +1,7 @@
 import { Field, Form, Formik } from "formik";
 import { useDispatch, useSelector } from "react-redux";
 import { NavLink } from "react-router-dom";
-import { createPlaylistSchema } from "../../schemas/createPlaylistSchema";
+import { playlistSchema } from "../../schemas/playlistSchema";
 import { addPlaylist } from "../../store/playlistsSlice";
 import { PLAYLISTS } from "../../constants/routes";
 import playlistDefaultImage from "../../assets/images/default-playlist-img.jpeg";
@@ -45,7 +45,7 @@ function CreatePlaylistPage() {
                 songsIds: [],
                 date: "",
               }}
-              validationSchema={createPlaylistSchema}
+              validationSchema={playlistSchema}
               onSubmit={createPlaylistHandler}
             >
               <Form>
