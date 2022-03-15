@@ -4,11 +4,8 @@ import { unwrapResult } from "@reduxjs/toolkit";
 import { TiEdit } from "react-icons/ti";
 import { MdDeleteForever } from "react-icons/md";
 import { useNavigate, useParams } from "react-router-dom";
-import {
-  getPickedPlaylist,
-  getSongs,
-  deletePlaylist,
-} from "../../api/playlistApi";
+import { getPickedPlaylist, deletePlaylist } from "../../api/playlistApi";
+import { getSongs } from "../../api/songsApi";
 import { useSort } from "../../hooks/useSort";
 import { deletePlaylistSong, editPlaylist } from "../../store/playlistsSlice";
 import { SEARCH } from "../../constants/routes";
