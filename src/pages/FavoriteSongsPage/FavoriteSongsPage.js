@@ -1,9 +1,10 @@
 import { useEffect, useState } from "react";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { MdDeleteForever } from "react-icons/md";
+import { unwrapResult } from "@reduxjs/toolkit";
 import { useSort } from "../../hooks/useSort";
-import { getUserById, updateUserById } from "../../api/userApi";
 import { getSongs } from "../../api/songsApi";
+import { updateFavorites } from "../../store/favoriteSongsSlice";
 import MainLayout from "../../components/MainLayout";
 import SortBy from "../../components/SortBy";
 import Song from "../../components/Song";
@@ -12,37 +13,40 @@ import "./favoriteSongsPage.scss";
 
 function FavoriteSongsPage() {
   const [favoriteSongs, setFavoriteSongs] = useState([]);
-  const [songsIds, setSongsIds] = useState([]);
   const userId = useSelector((state) => state.auth.user.id);
+  const favoriteSongsIds = useSelector(
+    (state) => state.favorites.favoriteSongsIds
+  );
+  const dispatch = useDispatch();
   const { clear, sortState, onSortBy } = useSort();
 
-  const fetchPlaylistSongs = () => {
+  const fetchFavoriteSongs = () => {
     setFavoriteSongs([]);
-    getUserById(userId).then(({ data: { favoriteSongsIds } }) => {
-      setSongsIds(favoriteSongsIds);
-      getSongs(sortState)
-        .then(({ data: allSongs }) => {
-          allSongs.forEach(
-            (song) =>
-              favoriteSongsIds.includes(song.id) &&
-              setFavoriteSongs((prevSongs) => [...prevSongs, song])
-          );
-        })
-        .catch((error) => {
-          alert(error.message);
-        });
-    });
+    getSongs(sortState)
+      .then(({ data: allSongs }) => {
+        allSongs.forEach(
+          (song) =>
+            favoriteSongsIds.includes(song.id) &&
+            setFavoriteSongs((prevSongs) => [...prevSongs, song])
+        );
+      })
+      .catch((error) => {
+        alert(error.message);
+      });
   };
 
   const unmakeFavorite = (songId) => {
-    const updatedFavoriteSongsIds = songsIds.filter((id) => id !== songId);
-    updateUserById({
-      userId,
-      favoriteSongsIds: updatedFavoriteSongsIds,
-    }).then(fetchPlaylistSongs);
+    const updatedFavoriteSongsIds = favoriteSongsIds.filter(
+      (id) => id !== songId
+    );
+    dispatch(
+      updateFavorites({ userId, favoriteSongsIds: updatedFavoriteSongsIds })
+    )
+      .then(unwrapResult)
+      .then(fetchFavoriteSongs);
   };
 
-  useEffect(fetchPlaylistSongs, [sortState]);
+  useEffect(fetchFavoriteSongs, [sortState]);
 
   return (
     <MainLayout>
