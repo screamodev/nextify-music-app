@@ -18,16 +18,13 @@ function FavoriteSongsPage() {
     (state) => state.favorites.favoriteSongsIds
   );
   const dispatch = useDispatch();
-  const { clear, sortState, onSortBy } = useSort();
+  const { clear, sortState, onSortBy, sortById, sortByDirection } = useSort();
 
   const fetchFavoriteSongs = () => {
-    setFavoriteSongs([]);
-    getSongs(sortState)
+    getSongs({ field: "", order: "" })
       .then(({ data: allSongs }) => {
-        allSongs.forEach(
-          (song) =>
-            favoriteSongsIds.includes(song.id) &&
-            setFavoriteSongs((prevSongs) => [...prevSongs, song])
+        setFavoriteSongs(
+          allSongs.filter((song) => favoriteSongsIds.includes(song.id))
         );
       })
       .catch((error) => {
@@ -46,7 +43,13 @@ function FavoriteSongsPage() {
       .then(fetchFavoriteSongs);
   };
 
-  useEffect(fetchFavoriteSongs, [sortState]);
+  const sortFavoriteSongs = () =>
+    setFavoriteSongs(() =>
+      sortState.order ? sortByDirection(favoriteSongs) : sortById(favoriteSongs)
+    );
+
+  useEffect(fetchFavoriteSongs, []);
+  useEffect(sortFavoriteSongs, [sortState]);
 
   return (
     <MainLayout>
