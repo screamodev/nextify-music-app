@@ -17,7 +17,7 @@ import {
   FAVORITE_PAGE,
   MAIN_PAGE,
   PLAYLISTS,
-  SEARCH,
+  SEARCH_PAGE,
 } from "../../constants/routes";
 import "./app.scss";
 
@@ -33,7 +33,7 @@ function App() {
               </Route>
               <Route element={<ProtectedRoute />}>
                 <Route path={MAIN_PAGE} element={<MyProfilePage />} />
-                <Route path={SEARCH} element={<SearchPage />} />
+                <Route path={SEARCH_PAGE} element={<SearchPage />} />
                 <Route
                   path={CREATE_PLAYLIST}
                   element={<CreatePlaylistPage />}
