@@ -1,22 +1,32 @@
 import PropTypes from "prop-types";
 import { useDispatch, useSelector } from "react-redux";
 import { useContext, useState } from "react";
+import {
+  AiFillCheckCircle,
+  AiFillPauseCircle,
+  AiFillPlayCircle,
+} from "react-icons/ai";
 import { IoIosAddCircle, IoMdHeart } from "react-icons/io";
-import { AiFillPauseCircle, AiFillPlayCircle } from "react-icons/ai";
 import { addSongToPlaylist } from "../../api/playlistApi";
 import { PlayerContext } from "../../contexts/PlayerContext";
 import { getPlaylists } from "../../store/playlistsSlice";
+import { updateFavorites } from "../../store/favoriteSongsSlice";
 import SelectPlaylist from "./SelectPlaylist";
 import "./song.scss";
 
 function Song({ author, name, duration, id, url }) {
+  const [isSelectShown, setIsSelectShown] = useState(false);
+  const userId = useSelector((state) => state.auth.user.id);
+  const playlists = useSelector((state) => state.playlists.playlists);
+  const favoriteSongsIds = useSelector(
+    (state) => state.favorites.favoriteSongsIds
+  );
+  const dispatch = useDispatch();
   const { currentSong, isPlaying, setCurrentSong, onPlay, onPause } =
     useContext(PlayerContext);
 
-  const userId = useSelector((state) => state.auth.user.id);
-  const playlists = useSelector((state) => state.playlists.playlists);
-  const [isSelectShown, setIsSelectShown] = useState(false);
-  const dispatch = useDispatch();
+  const isActive = currentSong?.id === id;
+  const isFavorite = favoriteSongsIds.includes(id);
 
   const openSelect = () => {
     setIsSelectShown(true);
@@ -39,7 +49,23 @@ function Song({ author, name, duration, id, url }) {
       });
   };
 
-  const isActive = currentSong?.id === id;
+  const makeFavorite = (songId) => {
+    dispatch(
+      updateFavorites({
+        userId,
+        favoriteSongsIds: [...favoriteSongsIds, songId],
+      })
+    );
+  };
+
+  const unmakeFavorite = (songId) => {
+    const updatedFavoriteSongsIds = favoriteSongsIds.filter(
+      (trackId) => trackId !== songId
+    );
+    dispatch(
+      updateFavorites({ userId, favoriteSongsIds: updatedFavoriteSongsIds })
+    );
+  };
 
   const onPlaySong = () => {
     if (currentSong?.id !== id) {
@@ -78,9 +104,15 @@ function Song({ author, name, duration, id, url }) {
             />
           )}
         </div>
-        <button className="add-to-button">
-          <IoMdHeart className="add-to-button-icon" />
-        </button>
+        {isFavorite ? (
+          <button onClick={() => unmakeFavorite(id)} className="add-to-button">
+            <AiFillCheckCircle className="add-to-button-icon" />
+          </button>
+        ) : (
+          <button onClick={() => makeFavorite(id)} className="add-to-button">
+            <IoMdHeart className="add-to-button-icon" />
+          </button>
+        )}
       </div>
     </div>
   );

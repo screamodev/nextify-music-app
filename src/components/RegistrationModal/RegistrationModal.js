@@ -13,17 +13,17 @@ import "./registrationModal.scss";
 
 function RegistrationModal({ isOpen, closeModal }) {
   const [isRegisterError, setIsRegisterError] = useState(false);
-  const [isRegisterFetch, setIsRegisterFetch] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
   const dispatch = useDispatch();
 
-  const submitHandler = ({ name, email, password }) => {
-    setIsRegisterFetch(true);
+  const handleRegister = ({ name, email, password }) => {
+    setIsLoading(true);
     setIsRegisterError(false);
-    dispatch(register({ name, email, password }))
+    dispatch(register({ name, email, password, favoriteSongsIds: [] }))
       .then(unwrapResult)
       .catch(() => {
         setIsRegisterError(true);
-        setIsRegisterFetch(false);
+        setIsLoading(false);
       });
   };
 
@@ -37,7 +37,7 @@ function RegistrationModal({ isOpen, closeModal }) {
         />
       </div>
       <div className="registration-modal-body">
-        {isRegisterFetch ? (
+        {isLoading ? (
           <PreLoader />
         ) : (
           <Formik
@@ -48,7 +48,7 @@ function RegistrationModal({ isOpen, closeModal }) {
               passwordConfirm: "",
             }}
             validationSchema={signupSchema}
-            onSubmit={submitHandler}
+            onSubmit={handleRegister}
           >
             <Form className="registration-modal-form">
               <Field

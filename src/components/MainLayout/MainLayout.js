@@ -2,6 +2,7 @@ import PropTypes from "prop-types";
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { getPlaylists } from "../../store/playlistsSlice";
+import { getFavorites } from "../../store/favoriteSongsSlice";
 import Nav from "../Header";
 import Sidebar from "../Sidebar";
 import Footer from "../Footer";
@@ -13,6 +14,7 @@ function MainLayout({ children }) {
 
   useEffect(() => {
     dispatch(getPlaylists(userId));
+    dispatch(getFavorites(userId));
   }, [userId]);
 
   return (

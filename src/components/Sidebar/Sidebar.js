@@ -3,10 +3,10 @@ import { NavLink } from "react-router-dom";
 import { bubble as Menu } from "react-burger-menu";
 import {
   CREATE_PLAYLIST,
-  FAVORITE,
+  FAVORITE_PAGE,
   PLAYLISTS,
   PROFILE,
-  SEARCH,
+  SEARCH_PAGE,
 } from "../../constants/routes";
 import "./sidebar.scss";
 
@@ -22,13 +22,13 @@ function Sidebar() {
               <NavLink to={PROFILE}>Profile</NavLink>
             </li>
             <li className="nav-item">
-              <NavLink to={SEARCH}>Search</NavLink>
+              <NavLink to={SEARCH_PAGE}>Search</NavLink>
             </li>
             <li className="nav-item">
               <NavLink to={CREATE_PLAYLIST}>Create playlist</NavLink>
             </li>
             <li className="nav-item">
-              <NavLink to={FAVORITE}>Favorite songs</NavLink>
+              <NavLink to={FAVORITE_PAGE}>Favorite songs</NavLink>
             </li>
           </ul>
         </nav>

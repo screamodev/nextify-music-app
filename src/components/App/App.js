@@ -9,13 +9,15 @@ import CreatePlaylistPage from "../../pages/CreatePlaylistPage";
 import GuestRoute from "../AuthRoutes/GuestRoute";
 import ProtectedRoute from "../AuthRoutes/ProtectedRoute";
 import PlaylistPage from "../../pages/PlaylistPage";
+import FavoriteSongsPage from "../../pages/FavoriteSongsPage";
 import store from "../../store";
 import {
   AUTH_PAGE,
   CREATE_PLAYLIST,
+  FAVORITE_PAGE,
   MAIN_PAGE,
   PLAYLISTS,
-  SEARCH,
+  SEARCH_PAGE,
 } from "../../constants/routes";
 import "./app.scss";
 
@@ -31,12 +33,16 @@ function App() {
               </Route>
               <Route element={<ProtectedRoute />}>
                 <Route path={MAIN_PAGE} element={<MyProfilePage />} />
-                <Route path={SEARCH} element={<SearchPage />} />
+                <Route path={SEARCH_PAGE} element={<SearchPage />} />
                 <Route
                   path={CREATE_PLAYLIST}
                   element={<CreatePlaylistPage />}
                 />
                 <Route path={`${PLAYLISTS}/:id`} element={<PlaylistPage />} />
+                <Route
+                  path={`${FAVORITE_PAGE}`}
+                  element={<FavoriteSongsPage />}
+                />
               </Route>
             </Routes>
           </div>
