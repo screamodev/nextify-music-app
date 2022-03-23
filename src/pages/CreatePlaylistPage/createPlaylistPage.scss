@@ -50,7 +50,7 @@
   }
 
   .playlist-cards {
-    @apply flex justify-around bg-secondary-opacity w-full p-[20px] flex-wrap;
+    @apply flex items-center bg-secondary-opacity w-full p-[20px] flex-wrap;
 
     @screen lg {
       @apply w-1/3;
