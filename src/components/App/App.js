@@ -10,6 +10,7 @@ import GuestRoute from "../AuthRoutes/GuestRoute";
 import ProtectedRoute from "../AuthRoutes/ProtectedRoute";
 import PlaylistPage from "../../pages/PlaylistPage";
 import FavoriteSongsPage from "../../pages/FavoriteSongsPage";
+import UserProfilePage from "../../pages/UserProfilePage";
 import store from "../../store";
 import {
   AUTH_PAGE,
@@ -17,6 +18,7 @@ import {
   FAVORITE_PAGE,
   MAIN_PAGE,
   PLAYLISTS,
+  PROFILE_PAGE,
   SEARCH_PAGE,
 } from "../../constants/routes";
 import "./app.scss";
@@ -43,6 +45,7 @@ function App() {
                   path={`${FAVORITE_PAGE}`}
                   element={<FavoriteSongsPage />}
                 />
+                <Route path={`${PROFILE_PAGE}`} element={<UserProfilePage />} />
               </Route>
             </Routes>
           </div>
