@@ -2,7 +2,7 @@ export const AUTH_PAGE = "/authorization";
 
 export const MAIN_PAGE = "/";
 
-export const PROFILE = "/profile";
+export const PROFILE_PAGE = "/profile";
 
 export const SEARCH_PAGE = "/search";
 

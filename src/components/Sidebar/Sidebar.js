@@ -5,7 +5,7 @@ import {
   CREATE_PLAYLIST,
   FAVORITE_PAGE,
   PLAYLISTS,
-  PROFILE,
+  PROFILE_PAGE,
   SEARCH_PAGE,
 } from "../../constants/routes";
 import "./sidebar.scss";
@@ -19,7 +19,7 @@ function Sidebar() {
         <nav className="nav-menu">
           <ul className="nav-list">
             <li className="nav-item">
-              <NavLink to={PROFILE}>Profile</NavLink>
+              <NavLink to={PROFILE_PAGE}>Profile</NavLink>
             </li>
             <li className="nav-item">
               <NavLink to={SEARCH_PAGE}>Search</NavLink>
