@@ -1,16 +1,16 @@
 @mixin sort-by-default($color) {
-  @apply p-[5px] pr-[25px] bg-#{$color} rounded-lg text-white font-bold relative;
+  @apply p-1 pr-6 bg-#{$color} rounded-lg text-white font-bold relative;
 }
 
 .sort-by-active {
   @include sort-by-default("primary");
 
   .stop-sort {
-    @apply w-[20px] h-[20px] self-center bg-black text-primary font-bold rounded-full absolute top-[-10px] right-[-10px];
+    @apply w-5 h-5 self-center bg-black text-primary font-bold rounded-full absolute bottom-7 -right--0.5;
   }
 
   .sort-order-arrow {
-    @apply w-[30px] h-[30px] absolute top-[5px] right-[-3px];
+    @apply w-7 h-7 absolute top-1.5 -right--0.1;
   }
 }
 

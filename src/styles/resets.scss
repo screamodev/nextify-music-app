@@ -3,7 +3,7 @@ html {
 }
 
 body {
-  @apply h-full font-['Playfair_Display'];
+  @apply h-full font-PlayfairD;
 }
 
 #root {
@@ -11,7 +11,7 @@ body {
 }
 
 ::-webkit-scrollbar {
-  @apply w-[10px];
+  @apply w-2;
 }
 
 ::-webkit-scrollbar-track {

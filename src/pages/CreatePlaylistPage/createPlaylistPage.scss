@@ -1,5 +1,5 @@
 .create-playlist-wrapper {
-  @apply flex text-white flex-col h-[calc(100vh-131px)] text-xl p-[5px] w-full self-center bg-secondary-opacity overflow-y-auto;
+  @apply flex text-white flex-col h-[calc(100vh-8.188rem)] text-xl p-1 w-full self-center bg-secondary-opacity overflow-y-auto;
 
   .create-playlist-content {
     @apply flex flex-col justify-center w-full self-center;
@@ -9,14 +9,14 @@
     }
 
     .playlist-photo {
-      @apply flex p-[20px] flex-col items-center;
+      @apply flex p-4 flex-col items-center;
 
       @screen lg {
-        @apply flex p-[20px] flex-col items-start;
+        @apply items-start;
       }
 
       .playlist-photo-holder {
-        @apply h-[200px] w-[200px] border-[1px] border-secondary mb-[15px] bg-neutral-900;
+        @apply h-52 w-52 border-2 border-secondary mb-2 bg-neutral-900;
       }
 
       .playlist-upload-photo-button {
@@ -29,7 +29,7 @@
     }
 
     .playlist-form {
-      @apply flex text-white flex-col items-center justify-center p-[20px];
+      @apply flex text-white flex-col items-center justify-center p-2;
     }
   }
 
@@ -45,19 +45,19 @@
     @apply flex flex-col items-center;
 
     .playlists-list-title {
-      @apply text-[22px] m-4;
+      @apply text-lg m-4;
     }
   }
 
   .playlist-cards {
-    @apply flex items-center bg-secondary-opacity w-full p-[20px] flex-wrap;
+    @apply flex items-center bg-secondary-opacity w-full p-5 flex-wrap;
 
     @screen lg {
       @apply w-1/3;
     }
 
     .playlist-card {
-      @apply flex border-[1px] m-4 w-[200px] h-[200px] p-[15px] relative cursor-pointer hover:scale-95 hover:border-secondary duration-300;
+      @apply flex border-2 m-4 w-48 h-48 p-6 relative cursor-pointer hover:scale-95 hover:border-secondary duration-300;
 
       .playlist-card-img {
         @apply absolute top-0 left-0;
@@ -70,6 +70,6 @@
   }
 
   .error-message {
-    @apply text-red-700 font-bold text-center p-[5px] mb-[5px] border border-red-700;
+    @apply text-red-700 font-bold text-center p-1 mb-1 border border-red-700;
   }
 }

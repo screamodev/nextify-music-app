@@ -5,7 +5,7 @@
     @apply h-full flex flex-col w-2/6 overflow-hidden;
 
     .player-current-music-info {
-      @apply first:text-white last:text-gray-300 last:text-[12px];
+      @apply first:text-white last:text-gray-300 last:text-lg;
     }
   }
 

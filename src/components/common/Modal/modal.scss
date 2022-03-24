@@ -2,6 +2,6 @@
   @apply fixed left-0 top-0 w-full h-full overflow-hidden bg-modal-overlay text-white z-50;
 
   .modal-window {
-    @apply mx-auto my-[5%] p-8 flex flex-col min-w-[350px] w-1/4 bg-form-rgba rounded-lg;
+    @apply mx-auto my-10 p-8 flex flex-col w-1/4 bg-form-rgba rounded-lg;
   }
 }
