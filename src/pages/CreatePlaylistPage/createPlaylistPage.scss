@@ -16,7 +16,7 @@
       }
 
       .playlist-photo-holder {
-        @apply h-[200px] w-[200px] border-[1px] border-secondary mb-[15px] p-[20px] bg-neutral-900;
+        @apply h-[200px] w-[200px] border-[1px] border-secondary mb-[15px] bg-neutral-900;
       }
 
       .playlist-upload-photo-button {
@@ -50,7 +50,7 @@
   }
 
   .playlist-cards {
-    @apply flex justify-around bg-secondary-opacity w-full p-[20px] flex-wrap;
+    @apply flex items-center bg-secondary-opacity w-full p-[20px] flex-wrap;
 
     @screen lg {
       @apply w-1/3;
