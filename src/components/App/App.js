@@ -3,7 +3,7 @@ import { Provider } from "react-redux";
 import { Routes, Route } from "react-router-dom";
 import { PlayerProvider } from "../../contexts/PlayerContext";
 import AuthorizationPage from "../../pages/AuthorizationPage";
-import MyProfilePage from "../../pages/MyProfilePage";
+import MainPage from "../../pages/MainPage";
 import SearchPage from "../../pages/SearchPage";
 import CreatePlaylistPage from "../../pages/CreatePlaylistPage";
 import GuestRoute from "../AuthRoutes/GuestRoute";
@@ -34,7 +34,7 @@ function App() {
                 <Route path={AUTH_PAGE} element={<AuthorizationPage />} />
               </Route>
               <Route element={<ProtectedRoute />}>
-                <Route path={MAIN_PAGE} element={<MyProfilePage />} />
+                <Route path={MAIN_PAGE} element={<MainPage />} />
                 <Route path={SEARCH_PAGE} element={<SearchPage />} />
                 <Route
                   path={CREATE_PLAYLIST}
