@@ -1,9 +1,9 @@
 @mixin input-border($color) {
-  @apply leading-[28pt] text-black border-solid mb-[10px] border-b-[5px] border-black rounded-lg outline-none text-left p-1 focus:#{$color};
+  @apply leading-8 text-black border-solid mb-3 border-b-4 border-black rounded-lg outline-none text-left p-1 focus:#{$color};
 }
 
 .form-input-block {
-  @apply flex flex-col mb-[20px];
+  @apply flex flex-col mb-2;
 
   .form-input {
     @include input-border("border-secondary");

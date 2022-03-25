@@ -2,6 +2,17 @@ module.exports = {
   content: ["./src/**/*.{js,jsx,ts,tsx}"],
   theme: {
     extend: {
+      fontFamily: {
+        PlayfairD: ["Playfair_Display"],
+      },
+      spacing: {
+        "-0.5": "-0.5rem",
+        "-0.1": "-0.1rem",
+        21.875: "21.875rem",
+        73.125: "73.125rem",
+        "35per": "35%",
+        "20per": "20%",
+      },
       flexGrow: {
         20: 20,
       },

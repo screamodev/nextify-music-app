@@ -1,12 +1,12 @@
 @mixin song-info-default($color) {
-  @apply p-[10px] w-1/2 flex items-center overflow-hidden text-#{$color};
+  @apply p-2 w-1/2 flex items-center overflow-hidden text-#{$color};
 }
 
 .song {
-  @apply flex my-[10px] w-full;
+  @apply flex my-2 w-full;
 
   .play-button {
-    @apply p-[10px] text-gray-200 hover:text-white duration-200;
+    @apply p-2 text-gray-200 hover:text-white duration-200;
 
     .play-button-icon {
       @apply h-8 w-8;
@@ -22,7 +22,7 @@
   }
 
   .song-duration {
-    @apply p-[10px] flex items-center;
+    @apply p-4 flex items-center;
   }
 
   .song-add-buttons {
@@ -33,7 +33,7 @@
     }
 
     .add-to-button {
-      @apply p-[5px];
+      @apply p-1;
 
       .add-to-button-icon {
         @apply h-6 w-6 text-white;

@@ -1,7 +1,7 @@
 .confirm-modal {
-  @apply p-[10px] w-full h-full rounded-xl text-center;
+  @apply p-3 w-full h-full rounded-xl text-center;
 
   &-button {
-    @apply p-[5px] w-[60px] rounded-lg m-2 bg-primary last:bg-secondary hover:opacity-90 duration-300;
+    @apply p-1 w-20 rounded-lg m-2 bg-primary last:bg-secondary hover:opacity-90 duration-300;
   }
 }

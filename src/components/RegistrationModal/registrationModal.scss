@@ -2,22 +2,22 @@
   @apply flex justify-between mb-10;
 
   .registration-modal-heading {
-    @apply text-[27px];
+    @apply text-3xl;
   }
 
   .registration-modal-heading-icon {
-    @apply text-[32px] cursor-pointer;
+    @apply text-3xl cursor-pointer;
   }
 }
 
 .registration-modal-form {
-  @apply flex flex-col mb-[20px];
+  @apply flex flex-col;
 
   .registration-form-button {
-    @apply text-[28px] mb-[15px] p-1 bg-secondary rounded-lg;
+    @apply text-lg mb-2 p-1 bg-secondary rounded-lg;
   }
 
   .error-message {
-    @apply text-red-700 font-bold text-center p-[5px] mb-[5px] border border-red-700;
+    @apply text-red-700 font-bold text-center p-1 mb-1 border border-red-700;
   }
 }
