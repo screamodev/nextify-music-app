@@ -11,6 +11,13 @@ import FormInput from "../common/FormInput";
 import Modal from "../common/Modal";
 import "./registrationModal.scss";
 
+let initialState = {
+  name: "",
+  email: "",
+  password: "",
+  passwordConfirm: "",
+};
+
 function RegistrationModal({ isOpen, closeModal }) {
   const [isRegisterError, setIsRegisterError] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
@@ -22,9 +29,15 @@ function RegistrationModal({ isOpen, closeModal }) {
     dispatch(register({ name, email, password, favoriteSongsIds: [] }))
       .then(unwrapResult)
       .catch(() => {
+        initialState = { name, email, password, ...initialState };
         setIsRegisterError(true);
         setIsLoading(false);
       });
+  };
+
+  const handleCloseModal = () => {
+    closeModal();
+    setIsRegisterError(false);
   };
 
   return (
@@ -33,7 +46,7 @@ function RegistrationModal({ isOpen, closeModal }) {
         <h3 className="registration-modal-heading">Sign up</h3>
         <AiFillCloseCircle
           className="registration-modal-heading-icon"
-          onClick={closeModal}
+          onClick={handleCloseModal}
         />
       </div>
       <div className="registration-modal-body">
@@ -41,12 +54,7 @@ function RegistrationModal({ isOpen, closeModal }) {
           <PreLoader />
         ) : (
           <Formik
-            initialValues={{
-              name: "",
-              email: "",
-              password: "",
-              passwordConfirm: "",
-            }}
+            initialValues={initialState}
             validationSchema={signupSchema}
             onSubmit={handleRegister}
           >
@@ -79,7 +87,7 @@ function RegistrationModal({ isOpen, closeModal }) {
               />
               <button className="registration-form-button">Sign up</button>
               {isRegisterError && (
-                <div className="error-message">User already exists.</div>
+                <div className="error-message">Something went wrong.</div>
               )}
             </Form>
           </Formik>
