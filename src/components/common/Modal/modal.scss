@@ -1,7 +1,15 @@
 .modal-overlay {
-  @apply fixed left-0 top-0 w-full h-full overflow-hidden bg-modal-overlay text-white z-50;
+  @apply fixed left-0 top-0 w-full h-full overflow-hidden bg-modal-overlay text-white z-50 p-4;
 
   .modal-window {
-    @apply mx-auto my-10 p-8 flex flex-col w-1/4 bg-form-rgba rounded-lg;
+    @apply mx-auto w-full min-w-min my-10 p-8 flex flex-col bg-form-rgba rounded-lg;
+
+    @screen sm {
+      @apply w-1/2;
+    }
+
+    @screen lg {
+      @apply w-1/4;
+    }
   }
 }

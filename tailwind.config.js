@@ -3,11 +3,10 @@ module.exports = {
   theme: {
     extend: {
       fontFamily: {
-        PlayfairD: ["Playfair_Display"],
+        "playfair-display": ["Playfair Display", "Oswald", "Open Sans"],
       },
       spacing: {
-        "-0.5": "-0.5rem",
-        "-0.1": "-0.1rem",
+        m10px: "-10px",
         21.875: "21.875rem",
         73.125: "73.125rem",
         "35per": "35%",

@@ -6,11 +6,11 @@
   @include sort-by-default("primary");
 
   .stop-sort {
-    @apply w-5 h-5 self-center bg-black text-primary font-bold rounded-full absolute bottom-7 -right--0.5;
+    @apply w-5 h-5 self-center bg-black text-primary font-bold rounded-full absolute bottom-7 right-m10px;
   }
 
   .sort-order-arrow {
-    @apply w-7 h-7 absolute top-1.5 -right--0.1;
+    @apply w-7 h-7 absolute top-1 right-0;
   }
 }
 

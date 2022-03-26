@@ -2,10 +2,14 @@
   @apply flex text-white flex-col h-[calc(100vh-8.188rem)] text-xl p-1 w-full self-center bg-secondary-opacity overflow-y-auto;
 
   .profile-content {
-    @apply flex justify-center w-full self-center;
+    @apply flex flex-col justify-center w-full self-center;
+
+    @screen sm {
+      @apply flex-row;
+    }
 
     @screen lg {
-      @apply flex flex-row justify-center w-full self-center;
+      @apply flex justify-center w-full self-center;
     }
 
     .profile-photo {
@@ -54,7 +58,11 @@
   }
 
   .playlist-cards {
-    @apply flex items-center bg-secondary-opacity w-full p-2 flex-wrap;
+    @apply flex items-center bg-secondary-opacity w-full p-2 flex-wrap justify-center;
+
+    @screen sm {
+      @apply justify-start;
+    }
 
     @screen lg {
       @apply w-1/3;
