@@ -9,7 +9,11 @@
     }
 
     .playlist-info-block {
-      @apply flex;
+      @apply flex flex-col items-center;
+
+      @screen sm {
+        @apply flex-row items-start;
+      }
 
       .playlist-photo-holder {
         @apply flex flex-col items-center m-1;
@@ -38,7 +42,11 @@
           }
 
           .set-edit-button {
-            @apply p-1 rounded-lg absolute top-4 left-44;
+            @apply p-1 rounded-lg absolute top-4 right-44;
+
+            @screen sm {
+              @apply left-44;
+            }
 
             .set-edit-button-icon {
               @apply h-6 w-6;
@@ -48,7 +56,11 @@
       }
 
       .delete-playlist-block {
-        @apply w-1/2 flex flex-col items-end p-4;
+        @apply w-full flex flex-col items-center p-4;
+
+        @screen sm {
+          @apply items-end;
+        }
 
         &-delete-button {
           @apply p-2 bg-primary rounded-lg hover:opacity-90 duration-700;
