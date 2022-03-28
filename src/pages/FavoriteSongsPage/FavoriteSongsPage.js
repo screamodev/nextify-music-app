@@ -10,6 +10,7 @@ import SortBy from "../../components/SortBy";
 import Song from "../../components/Song";
 import favoriteSongsImage from "../../assets/images/favorite-songs-img.png";
 import "./favoriteSongsPage.scss";
+import { addSongs } from "../../store/playerReducer";
 
 function FavoriteSongsPage() {
   const [favoriteSongs, setFavoriteSongs] = useState([]);
@@ -50,6 +51,11 @@ function FavoriteSongsPage() {
 
   useEffect(fetchFavoriteSongs, []);
   useEffect(sortFavoriteSongs, [sortState]);
+  useEffect(() => {
+    if (favoriteSongs.length) {
+      dispatch(addSongs(favoriteSongs));
+    }
+  }, [favoriteSongs]);
 
   return (
     <MainLayout>

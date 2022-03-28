@@ -22,6 +22,7 @@ import {
   SEARCH_PAGE,
 } from "../../constants/routes";
 import "./app.scss";
+import Footer from "../Footer";
 
 function App() {
   return (
@@ -48,6 +49,7 @@ function App() {
                 <Route path={`${PROFILE_PAGE}`} element={<UserProfilePage />} />
               </Route>
             </Routes>
+            <Footer />
           </div>
         </div>
       </PlayerProvider>

@@ -7,6 +7,7 @@ import { useNavigate, useParams } from "react-router-dom";
 import { getPickedPlaylist, deletePlaylist } from "../../api/playlistApi";
 import { getSongs } from "../../api/songsApi";
 import { useSort } from "../../hooks/useSort";
+import { addSongs } from "../../store/playerReducer";
 import { deletePlaylistSong, editPlaylist } from "../../store/playlistsSlice";
 import { SEARCH_PAGE } from "../../constants/routes";
 import MainLayout from "../../components/MainLayout";
@@ -26,7 +27,7 @@ function PlaylistPage() {
   const navigate = useNavigate();
 
   const [currentPlaylist, setCurrentPlaylist] = useState(null);
-  const [playlistSongs, setPlaylistSongs] = useState(null);
+  const [playlistSongs, setPlaylistSongs] = useState([]);
   const [isEditMode, setEditMode] = useState(false);
   const [isConfirmDeleteModalOpen, setIsConfirmDeleteModalOpen] =
     useState(false);
@@ -49,6 +50,12 @@ function PlaylistPage() {
         });
     });
   };
+
+  useEffect(() => {
+    if (playlistSongs.length) {
+      dispatch(addSongs(playlistSongs));
+    }
+  }, [playlistSongs]);
 
   useEffect(() => {
     fetchPlaylistSongs();
@@ -147,8 +154,8 @@ function PlaylistPage() {
           <div className="playlist-songs">
             <SortBy clear={clear} sortState={sortState} onSortBy={onSortBy} />
             <div className="playlist-songs-list">
-              {playlistSongs?.length ? (
-                playlistSongs?.map(
+              {playlistSongs.length ? (
+                playlistSongs.map(
                   ({ author, name: songName, duration, id: songId, url }) => (
                     <div key={songId} className="playlist-song-delete">
                       <Song
