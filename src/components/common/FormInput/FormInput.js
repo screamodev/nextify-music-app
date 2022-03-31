@@ -3,15 +3,27 @@ import "./formInput.scss";
 
 function FormInput({
   field,
-  form: { getFieldMeta },
+  form: { errors, touched, setErrors },
   label,
   placeholder,
   type,
   isTextarea,
 }) {
-  const { error, touched } = getFieldMeta();
   const { name, onBlur, onChange, value } = field;
-  const errorMessage = error[name];
+
+  const isTouched = touched[name];
+  const errorMessage = errors[name];
+
+  const disableError = () => {
+    const errorsAsArray = Object.entries(errors);
+    const errorsWithoutClickedFieldError = errorsAsArray.filter(
+      ([key]) => key !== name
+    );
+    const filteredArrayToObject = Object.fromEntries(
+      errorsWithoutClickedFieldError
+    );
+    setErrors(filteredArrayToObject);
+  };
 
   return (
     <div className="form-input-block">
@@ -24,6 +36,7 @@ function FormInput({
           id={name}
           onBlur={onBlur}
           onChange={onChange}
+          onFocus={disableError}
           value={value}
         />
       ) : (
@@ -34,10 +47,11 @@ function FormInput({
           id={name}
           onBlur={onBlur}
           onChange={onChange}
+          onFocus={disableError}
           value={value}
         />
       )}
-      {errorMessage && touched && (
+      {isTouched && errorMessage && (
         <div className="error-message">{errorMessage}</div>
       )}
     </div>
@@ -55,7 +69,9 @@ FormInput.propTypes = {
     value: PropTypes.string,
   }).isRequired,
   form: PropTypes.shape({
-    getFieldMeta: PropTypes.func,
+    touched: PropTypes.shape({}),
+    errors: PropTypes.shape({}),
+    setErrors: PropTypes.func,
   }).isRequired,
   isTextarea: PropTypes.bool,
 };

@@ -11,16 +11,16 @@ import FormInput from "../common/FormInput";
 import Modal from "../common/Modal";
 import "./registrationModal.scss";
 
-let initialState = {
-  name: "",
-  email: "",
-  password: "",
-  passwordConfirm: "",
-};
-
 function RegistrationModal({ isOpen, closeModal }) {
   const [isRegisterError, setIsRegisterError] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
+  const [initialFormState, setInitialFormState] = useState({
+    name: "",
+    email: "",
+    password: "",
+    passwordConfirm: "",
+  });
+
   const dispatch = useDispatch();
 
   const handleRegister = ({ name, email, password }) => {
@@ -29,7 +29,7 @@ function RegistrationModal({ isOpen, closeModal }) {
     dispatch(register({ name, email, password, favoriteSongsIds: [] }))
       .then(unwrapResult)
       .catch(() => {
-        initialState = { name, email, password, ...initialState };
+        setInitialFormState({ ...initialFormState, name, email, password });
         setIsRegisterError(true);
         setIsLoading(false);
       });
@@ -54,7 +54,7 @@ function RegistrationModal({ isOpen, closeModal }) {
           <PreLoader />
         ) : (
           <Formik
-            initialValues={initialState}
+            initialValues={initialFormState}
             validationSchema={signupSchema}
             onSubmit={handleRegister}
           >
@@ -87,7 +87,9 @@ function RegistrationModal({ isOpen, closeModal }) {
               />
               <button className="registration-form-button">Sign up</button>
               {isRegisterError && (
-                <div className="error-message">Something went wrong.</div>
+                <div className="submit-error-message">
+                  Something went wrong.
+                </div>
               )}
             </Form>
           </Formik>

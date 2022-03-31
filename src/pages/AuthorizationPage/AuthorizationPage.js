@@ -14,6 +14,11 @@ function AuthorizationPage() {
   const [isLoginError, setIsLoginError] = useState(false);
   const [isLoginFetch, setIsLoginFetch] = useState(false);
   const [isRegisterModalOpen, setIsRegisterModalOpen] = useState(false);
+  const [initialFormState, setInitialFormState] = useState({
+    email: "",
+    password: "",
+  });
+
   const dispatch = useDispatch();
 
   const submitHandler = ({ email, password }) => {
@@ -22,6 +27,7 @@ function AuthorizationPage() {
     dispatch(login({ email, password }))
       .then(unwrapResult)
       .catch(() => {
+        setInitialFormState({ ...initialFormState, email });
         setIsLoginError(true);
         setIsLoginFetch(false);
       });
@@ -56,10 +62,7 @@ function AuthorizationPage() {
               <PreLoader />
             ) : (
               <Formik
-                initialValues={{
-                  email: "",
-                  password: "",
-                }}
+                initialValues={initialFormState}
                 validationSchema={signinSchema}
                 onSubmit={submitHandler}
               >
@@ -80,8 +83,8 @@ function AuthorizationPage() {
                   />
                   <button className="sign-in-button">Sign in</button>
                   {isLoginError && (
-                    <div className="error-message">
-                      Incorrect email or password.
+                    <div className="submit-error-message">
+                      Something went wrong.
                     </div>
                   )}
                 </Form>
