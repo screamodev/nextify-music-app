@@ -14,10 +14,10 @@
   @apply flex flex-col;
 
   .registration-form-button {
-    @apply text-lg my-4 p-2 bg-secondary rounded-lg;
+    @apply text-lg my-4 p-4 bg-secondary rounded-lg;
   }
 
-  .error-message {
-    @apply text-red-700 font-bold text-center p-1 mb-1 border border-red-700;
+  .submit-error-message {
+    @apply bg-red-700 text-white font-bold text-center rounded-lg p-2 mb-1;
   }
 }
