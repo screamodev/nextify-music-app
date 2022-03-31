@@ -4,18 +4,17 @@ export const signupSchema = Yup.object().shape({
   name: Yup.string()
     .min(2, "Too short!")
     .max(20, "Too long! 20 characters max")
-    .required("Required"),
-  email: Yup.string().email("Invalid email!").required("Required"),
+    .required("What is your name?"),
+  email: Yup.string().email("Invalid email!").required("Email is required"),
   password: Yup.string()
     .min(6, "Too short! 6 letters min")
-    .required("Required"),
-  passwordConfirm: Yup.string().oneOf(
-    [Yup.ref("password"), null],
-    "Passwords must match!"
-  ),
+    .required("Pick a password. At least six letters long"),
+  passwordConfirm: Yup.string()
+    .oneOf([Yup.ref("password"), null], "Passwords must match!")
+    .required("Confirm password"),
 });
 
 export const signinSchema = Yup.object().shape({
-  email: Yup.string().required("Required"),
-  password: Yup.string().required("Required"),
+  email: Yup.string().required("Enter your email"),
+  password: Yup.string().required("Enter your password"),
 });
