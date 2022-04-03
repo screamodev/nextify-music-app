@@ -32,12 +32,4 @@
       }
     }
   }
-
-  .search-songs {
-    @apply flex flex-col;
-
-    .search-not-found {
-      @apply text-center;
-    }
-  }
 }

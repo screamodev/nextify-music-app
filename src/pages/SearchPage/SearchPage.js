@@ -1,44 +1,53 @@
 import { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
 import { MdClear } from "react-icons/md";
-import { searchSongs } from "../../api/searchApi";
 import { addSongs } from "../../store/playerReducer";
 import { useSort } from "../../hooks/useSort";
+import { useSearchInfinityScroll } from "../../hooks/useSearchInfinityScroll";
+import { searchSongs } from "../../api/searchApi";
 import MainLayout from "../../components/MainLayout";
-import Song from "../../components/Song";
-import SortBy from "../../components/SortBy";
+import Songs from "../../components/Songs";
 import "./searchPage.scss";
 
 function SearchPage() {
   const { clear, sortState, onSortBy } = useSort();
 
   const [searchInput, setSearchInput] = useState("");
-  const [songs, setSongs] = useState([]);
+  const [pageNumber, setPageNumber] = useState(1);
+
+  const fetchSearchSongs = ({
+    searchInputValue,
+    pageNumber: page,
+    sortState: sort,
+  }) => searchSongs(searchInputValue, { ...sort }, page);
+
+  const {
+    isLoading,
+    items: songs,
+    lastSongElementRef,
+  } = useSearchInfinityScroll(
+    searchInput,
+    pageNumber,
+    setPageNumber,
+    sortState,
+    fetchSearchSongs
+  );
   const dispatch = useDispatch();
 
-  useEffect(() => {
-    if (searchInput) {
-      searchSongs({ searchInput, ...sortState }).then(({ data }) => {
-        setSongs(data);
-      });
-    } else if (!searchInput) {
-      setSongs([]);
-    }
-  }, [searchInput, sortState]);
+  const handleChange = (e) => {
+    setSearchInput(e.target.value);
+    setPageNumber(1);
+  };
+
+  const clearInput = () => {
+    setSearchInput("");
+  };
 
   useEffect(() => {
     if (songs.length) {
       dispatch(addSongs(songs));
     }
   }, [songs]);
-
-  const handleChange = (e) => {
-    setSearchInput(e.target.value);
-  };
-
-  const clearInput = () => {
-    setSearchInput("");
-  };
 
   return (
     <MainLayout>
@@ -55,27 +64,15 @@ function SearchPage() {
               <MdClear className="search-input-button-icon" />
             </button>
           </div>
-          <div className="search-songs">
-            <SortBy clear={clear} sortState={sortState} onSortBy={onSortBy} />
-            <div className="search-songs-list">
-              {songs.length ? (
-                songs.map(({ author, name, duration, id, url }) => (
-                  <Song
-                    author={author}
-                    name={name}
-                    duration={duration}
-                    id={id}
-                    key={id}
-                    url={url}
-                  />
-                ))
-              ) : (
-                <div className="search-not-found">
-                  Not found. Type something else
-                </div>
-              )}
-            </div>
-          </div>
+          <Songs
+            isLoading={isLoading}
+            searchInputValue={searchInput}
+            lastSongElementRef={lastSongElementRef}
+            clearSortState={clear}
+            sortState={sortState}
+            onSortBy={onSortBy}
+            songs={songs}
+          />
         </div>
       </div>
     </MainLayout>
