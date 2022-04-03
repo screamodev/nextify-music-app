@@ -1,7 +1,7 @@
 import PropTypes from "prop-types";
 import { useEffect, useRef } from "react";
 import { NavLink } from "react-router-dom";
-import { CREATE_PLAYLIST } from "../../../constants/routes";
+import { CREATE_PLAYLIST } from "../../../../constants/routes";
 import "./selectPlaylist.scss";
 
 function SelectPlaylist({ playlists, addSong, songId, closeSelect }) {

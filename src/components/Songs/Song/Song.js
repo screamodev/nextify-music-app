@@ -7,14 +7,14 @@ import {
   AiFillPlayCircle,
 } from "react-icons/ai";
 import { IoIosAddCircle, IoMdHeart } from "react-icons/io";
-import { addSongToPlaylist } from "../../api/playlistApi";
-import { PlayerContext } from "../../contexts/PlayerContext";
-import { getPlaylists } from "../../store/playlistsSlice";
-import { updateFavorites } from "../../store/favoriteSongsSlice";
+import { addSongToPlaylist } from "../../../api/playlistApi";
+import { PlayerContext } from "../../../contexts/PlayerContext";
+import { getPlaylists } from "../../../store/playlistsSlice";
+import { updateFavorites } from "../../../store/favoriteSongsSlice";
 import SelectPlaylist from "./SelectPlaylist";
 import "./song.scss";
 
-function Song({ author, name, duration, id, url }) {
+function Song({ lastSongElementRef, author, name, duration, id, url }) {
   const [isSelectShown, setIsSelectShown] = useState(false);
   const userId = useSelector((state) => state.auth.user.id);
   const playlists = useSelector((state) => state.playlists.playlists);
@@ -75,7 +75,7 @@ function Song({ author, name, duration, id, url }) {
   };
 
   return (
-    <div className="song">
+    <div ref={lastSongElementRef} className="song">
       {isPlaying && currentSong?.id === id ? (
         <button className="play-button" onClick={onPause}>
           <AiFillPauseCircle className="play-button-icon" />
@@ -119,11 +119,16 @@ function Song({ author, name, duration, id, url }) {
 }
 
 Song.propTypes = {
+  lastSongElementRef: PropTypes.func,
   author: PropTypes.string.isRequired,
   name: PropTypes.string.isRequired,
   duration: PropTypes.string.isRequired,
   id: PropTypes.number.isRequired,
   url: PropTypes.string.isRequired,
+};
+
+Song.defaultProps = {
+  lastSongElementRef: null,
 };
 
 export default Song;
