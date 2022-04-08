@@ -12,7 +12,7 @@ import { deletePlaylistSong, editPlaylist } from "../../store/playlistsSlice";
 import { SEARCH_PAGE } from "../../constants/routes";
 import MainLayout from "../../components/MainLayout";
 import SortBy from "../../components/SortBy";
-import Song from "../../components/Song";
+import Song from "../../components/Songs/Song";
 import ConfirmModal from "../../components/ConfirmModal";
 import EditPlaylistForm from "../../components/EditPlaylistForm";
 import playlistDefaultImage from "../../assets/images/default-playlist-img.jpeg";
