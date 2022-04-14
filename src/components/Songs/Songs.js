@@ -11,6 +11,7 @@ function Songs({
   sortState,
   onSortBy,
   songs,
+  dispatchSongsOnPlay,
 }) {
   return (
     <div className="songs">
@@ -23,15 +24,15 @@ function Songs({
         {songs.length ? (
           songs.map(({ author, name, duration, id, url }, index) => (
             <Song
-              lastSongElementRef={
-                songs.length === index + 1 ? lastSongElementRef : null
-              }
+              isLastElement={songs.length === index + 1}
+              lastSongElementRef={lastSongElementRef}
               author={author}
               name={name}
               duration={duration}
               id={id}
               key={id}
               url={url}
+              dispatchSongsOnPlay={dispatchSongsOnPlay}
             />
           ))
         ) : (
@@ -44,8 +45,9 @@ function Songs({
 }
 
 Songs.propTypes = {
-  isLoading: PropTypes.bool.isRequired,
-  lastSongElementRef: PropTypes.func.isRequired,
+  dispatchSongsOnPlay: PropTypes.func,
+  isLoading: PropTypes.bool,
+  lastSongElementRef: PropTypes.func,
   clearSortState: PropTypes.func.isRequired,
   sortState: PropTypes.shape({
     field: PropTypes.string.isRequired,
@@ -60,6 +62,12 @@ Songs.propTypes = {
       duration: PropTypes.string.isRequired,
     })
   ).isRequired,
+};
+
+Songs.defaultProps = {
+  isLoading: null,
+  lastSongElementRef: null,
+  dispatchSongsOnPlay: undefined,
 };
 
 export default Songs;
