@@ -1,5 +1,5 @@
 .select-playlists-list {
-  @apply outline-none text-neutral-400 absolute bottom-6 right-8 bg-neutral-900 shadow-2xl rounded-lg w-44 p-4;
+  @apply outline-none border border-secondary text-neutral-400 absolute bottom-6 right-8 bg-neutral-900 shadow-2xl rounded-lg w-44 p-4;
 
   &-element {
     @apply text-left text-ellipsis overflow-hidden;
