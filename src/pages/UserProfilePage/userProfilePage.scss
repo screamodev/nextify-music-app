@@ -65,7 +65,7 @@
     }
 
     .playlist-card {
-      @apply flex border-2 m-4 w-52 h-52 p-1 relative cursor-pointer hover:scale-95 hover:border-secondary duration-300;
+      @apply flex border-2 m-4 w-48 h-48 p-6 relative cursor-pointer hover:scale-95 hover:border-secondary duration-300;
 
       &-img {
         @apply absolute top-0 left-0;

@@ -45,7 +45,7 @@
     @apply flex flex-col items-center;
 
     .playlists-list-title {
-      @apply text-lg m-4;
+      @apply text-2xl m-4;
     }
   }
 
@@ -57,13 +57,13 @@
     }
 
     .playlist-card {
-      @apply flex self-start border-2 m-4 w-48 h-48 p-6 relative cursor-pointer hover:scale-95 hover:border-secondary duration-300;
+      @apply flex border-2 m-4 w-48 h-48 p-6 relative cursor-pointer hover:scale-95 hover:border-secondary duration-300;
 
-      .playlist-card-img {
+      &-img {
         @apply absolute top-0 left-0;
       }
 
-      .playlist-card-text {
+      &-text {
         @apply text-ellipsis overflow-hidden z-10 self-end;
       }
     }
