@@ -37,7 +37,7 @@
     }
 
     .profile-info-holder {
-      @apply flex flex-col m-2 min-w-min max-w-fit;
+      @apply flex flex-col m-2;
 
       .profile-info {
         @apply relative flex flex-col justify-around;
@@ -58,14 +58,10 @@
   }
 
   .playlist-cards {
-    @apply flex items-center bg-secondary-opacity w-full p-2 flex-wrap justify-center;
-
-    @screen sm {
-      @apply justify-start;
-    }
+    @apply flex items-center justify-center bg-secondary-opacity p-2 flex-wrap;
 
     @screen lg {
-      @apply w-1/3;
+      @apply max-w-50per;
     }
 
     .playlist-card {

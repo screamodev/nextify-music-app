@@ -50,14 +50,10 @@
   }
 
   .playlist-cards {
-    @apply flex items-center bg-secondary-opacity w-full justify-center flex-wrap;
-
-    @screen sm {
-      @apply p-5 justify-start;
-    }
+    @apply flex items-center justify-center bg-secondary-opacity p-2 flex-wrap;
 
     @screen lg {
-      @apply w-1/3;
+      @apply max-w-50per;
     }
 
     .playlist-card {
