@@ -6,7 +6,7 @@ deploy:
   image: node
   script:
     - npm install -g heroku
-    - git remote set-url heroku https://heroku:$HEROKU_API_KEY@git.heroku.com/react-nextify.git
+    - git remote rm heroku && git remote add heroku https://heroku:$HEROKU_API_KEY@git.heroku.com/react-nextify.git
     - git push -f heroku HEAD:master
   only:
     - merge_requests
