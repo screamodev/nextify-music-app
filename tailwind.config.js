@@ -1,6 +1,9 @@
 module.exports = {
   content: ["./src/**/*.{js,jsx,ts,tsx}"],
   theme: {
+    maxWidth: {
+      "50per": "50%",
+    },
     extend: {
       fontFamily: {
         "playfair-display": ["Playfair Display", "Oswald", "Open Sans"],

@@ -45,35 +45,31 @@
     @apply flex flex-col items-center;
 
     .playlists-list-title {
-      @apply text-lg m-4;
+      @apply text-2xl m-4;
     }
   }
 
   .playlist-cards {
-    @apply flex items-center bg-secondary-opacity w-full justify-center flex-wrap;
-
-    @screen sm {
-      @apply p-5 justify-start;
-    }
+    @apply flex items-center justify-center bg-secondary-opacity p-2 flex-wrap;
 
     @screen lg {
-      @apply w-1/3;
+      @apply max-w-50per;
     }
 
     .playlist-card {
       @apply flex border-2 m-4 w-48 h-48 p-6 relative cursor-pointer hover:scale-95 hover:border-secondary duration-300;
 
-      .playlist-card-img {
+      &-img {
         @apply absolute top-0 left-0;
       }
 
-      .playlist-card-text {
+      &-text {
         @apply text-ellipsis overflow-hidden z-10 self-end;
       }
     }
   }
 
   .error-message {
-    @apply text-red-700 font-bold text-center p-1 mb-1 border border-red-700;
+    @apply bg-red-700 text-white font-bold text-center rounded-lg p-2 mb-1;
   }
 }
