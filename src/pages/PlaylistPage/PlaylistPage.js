@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { unwrapResult } from "@reduxjs/toolkit";
 import { TiEdit } from "react-icons/ti";
@@ -10,6 +10,8 @@ import { useSort } from "../../hooks/useSort";
 import { addSongs } from "../../store/playerReducer";
 import { deletePlaylistSong, editPlaylist } from "../../store/playlistsSlice";
 import { SEARCH_PAGE } from "../../constants/routes";
+import { PlayerContext } from "../../contexts/PlayerContext";
+import { isSongPlayingInCurrentSongList } from "../../helpers/songs";
 import MainLayout from "../../components/MainLayout";
 import SortBy from "../../components/SortBy";
 import Song from "../../components/Songs/Song";
@@ -19,9 +21,8 @@ import playlistDefaultImage from "../../assets/images/default-playlist-img.jpeg"
 import "./playlistPage.scss";
 
 function PlaylistPage() {
-  const { clear, sortState, onSortBy } = useSort();
-
   const userId = useSelector((state) => state.auth.user.id);
+
   const { id: playlistId } = useParams();
   const dispatch = useDispatch();
   const navigate = useNavigate();
@@ -32,12 +33,20 @@ function PlaylistPage() {
   const [isConfirmDeleteModalOpen, setIsConfirmDeleteModalOpen] =
     useState(false);
 
+  const { clear, sortState, onSortBy, sortByDirection, sortById } = useSort();
+  const { currentSong } = useContext(PlayerContext);
+
+  const isPlaylistSongPlaying = isSongPlayingInCurrentSongList(
+    playlistSongs,
+    currentSong
+  );
+
   const fetchPlaylistSongs = () => {
     setPlaylistSongs([]);
     getPickedPlaylist(userId, playlistId).then(({ data: [playlist] }) => {
       setCurrentPlaylist(playlist);
       const { songsIds } = playlist;
-      getSongs(sortState)
+      getSongs({ field: "", order: "" })
         .then(({ data: allSongs }) => {
           allSongs.forEach(
             (song) =>
@@ -50,16 +59,6 @@ function PlaylistPage() {
         });
     });
   };
-
-  useEffect(() => {
-    if (playlistSongs.length) {
-      dispatch(addSongs(playlistSongs));
-    }
-  }, [playlistSongs]);
-
-  useEffect(() => {
-    fetchPlaylistSongs();
-  }, [playlistId, sortState, isEditMode]);
 
   const handleEditPlaylist = ({ name, description }, { resetForm }) => {
     dispatch(editPlaylist({ name, description, playlistId }))
@@ -97,6 +96,28 @@ function PlaylistPage() {
   const closeModal = () => {
     setIsConfirmDeleteModalOpen(false);
   };
+
+  const dispatchSongsOnPlay = () => {
+    dispatch(addSongs(playlistSongs));
+  };
+
+  useEffect(() => {
+    fetchPlaylistSongs();
+  }, [playlistId, isEditMode]);
+
+  useEffect(() => {
+    if (playlistSongs.length) {
+      const sortedSongs = sortState.order
+        ? sortByDirection(playlistSongs)
+        : sortById(playlistSongs);
+
+      if (isPlaylistSongPlaying) {
+        dispatch(addSongs(sortedSongs));
+      }
+
+      setPlaylistSongs(sortedSongs);
+    }
+  }, [sortState]);
 
   return (
     <MainLayout>
@@ -159,6 +180,7 @@ function PlaylistPage() {
                   ({ author, name: songName, duration, id: songId, url }) => (
                     <div key={songId} className="playlist-song-delete">
                       <Song
+                        dispatchSongsOnPlay={dispatchSongsOnPlay}
                         author={author}
                         name={songName}
                         duration={duration}

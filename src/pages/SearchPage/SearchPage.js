@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { useDispatch } from "react-redux";
 import { MdClear } from "react-icons/md";
 import { addSongs } from "../../store/playerReducer";
@@ -10,7 +10,7 @@ import Songs from "../../components/Songs";
 import "./searchPage.scss";
 
 function SearchPage() {
-  const { clear, sortState, onSortBy } = useSort();
+  const { clear, sortState, onSortBy, sortByDirection } = useSort();
 
   const [searchInput, setSearchInput] = useState("");
   const [pageNumber, setPageNumber] = useState(1);
@@ -30,8 +30,10 @@ function SearchPage() {
     pageNumber,
     setPageNumber,
     sortState,
-    fetchSearchSongs
+    fetchSearchSongs,
+    sortByDirection
   );
+
   const dispatch = useDispatch();
 
   const handleChange = (e) => {
@@ -43,11 +45,9 @@ function SearchPage() {
     setSearchInput("");
   };
 
-  useEffect(() => {
-    if (songs.length) {
-      dispatch(addSongs(songs));
-    }
-  }, [songs]);
+  const dispatchSongsOnPlay = () => {
+    dispatch(addSongs(songs));
+  };
 
   return (
     <MainLayout>
@@ -65,6 +65,7 @@ function SearchPage() {
             </button>
           </div>
           <Songs
+            dispatchSongsOnPlay={dispatchSongsOnPlay}
             isLoading={isLoading}
             searchInputValue={searchInput}
             lastSongElementRef={lastSongElementRef}

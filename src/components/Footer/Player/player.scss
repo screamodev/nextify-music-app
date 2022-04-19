@@ -1,5 +1,5 @@
 .player {
-  @apply h-full flex justify-between items-center px-5;
+  @apply h-full flex justify-between items-center px-5 relative;
 
   &-music-info {
     @apply h-full flex flex-col w-2/6 overflow-hidden;
@@ -37,18 +37,30 @@
     @apply h-8 w-8 text-white;
   }
 
-  .volume-controls {
-    @apply flex items-center w-2/6 justify-end invisible;
-    @screen sm {
-      @apply visible;
-    }
+  .side-buttons {
+    @apply flex justify-end w-1/3;
 
-    .volume-button {
-      @apply h-8 w-8 text-white;
+    &-volume {
+      @apply flex w-0 mx-2 items-center justify-center invisible;
 
-      .volume-toggle-button-icon {
-        @apply h-8 w-8 text-white;
+      @screen sm {
+        @apply visible w-40;
+      }
+      &-control {
+        @apply h-8 w-8 text-white w-36;
       }
     }
   }
+}
+
+.side-buttons-button {
+  @apply mx-2;
+
+  &-icon {
+    @apply w-8 h-8 text-white;
+  }
+}
+
+.volume-button-icon {
+  @apply h-8 w-10 text-white;
 }
