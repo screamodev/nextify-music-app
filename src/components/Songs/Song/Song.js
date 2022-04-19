@@ -39,6 +39,7 @@ function Song({
 
   const isActive = currentSong?.id === id;
   const isFavorite = favoriteSongsIds.includes(id);
+  const isCurrentSongPlaying = isPlaying && isActive;
 
   const openSelect = () => {
     setIsSelectShown(true);
@@ -91,17 +92,18 @@ function Song({
     );
   };
 
-  return isLastElement ? (
-    <div ref={lastSongElementRef} className="song">
-      {isPlaying && currentSong?.id === id ? (
-        <button className="play-button" onClick={onPause}>
+  return (
+    <div ref={isLastElement ? lastSongElementRef : undefined} className="song">
+      <button
+        className="play-button"
+        onClick={isCurrentSongPlaying ? onPause : onPlaySong}
+      >
+        {isCurrentSongPlaying ? (
           <AiFillPauseCircle className="play-button-icon" />
-        </button>
-      ) : (
-        <button className="play-button" onClick={onPlaySong}>
+        ) : (
           <AiFillPlayCircle className="play-button-icon" />
-        </button>
-      )}
+        )}
+      </button>
       <div className={`song-info ${isActive ? "song-info-active" : ""}`}>
         {author}
       </div>
@@ -121,56 +123,18 @@ function Song({
             />
           )}
         </div>
-        {isFavorite ? (
-          <button onClick={() => unmakeFavorite(id)} className="add-to-button">
+        <button
+          onClick={
+            isFavorite ? () => unmakeFavorite(id) : () => makeFavorite(id)
+          }
+          className="add-to-button"
+        >
+          {isFavorite ? (
             <AiFillCheckCircle className="add-to-button-icon" />
-          </button>
-        ) : (
-          <button onClick={() => makeFavorite(id)} className="add-to-button">
+          ) : (
             <IoMdHeart className="add-to-button-icon" />
-          </button>
-        )}
-      </div>
-    </div>
-  ) : (
-    <div className="song">
-      {isPlaying && currentSong?.id === id ? (
-        <button className="play-button" onClick={onPause}>
-          <AiFillPauseCircle className="play-button-icon" />
-        </button>
-      ) : (
-        <button className="play-button" onClick={onPlaySong}>
-          <AiFillPlayCircle className="play-button-icon" />
-        </button>
-      )}
-      <div className={`song-info ${isActive ? "song-info-active" : ""}`}>
-        {author}
-      </div>
-      <div className="song-info">{name}</div>
-      <div className="song-duration">{duration}</div>
-      <div className="song-add-buttons">
-        <div className="song-add-button-with-dropdown">
-          <button onClick={openSelect} className="add-to-button">
-            <IoIosAddCircle className="add-to-button-icon" />
-          </button>
-          {isSelectShown && (
-            <SelectPlaylist
-              playlists={playlists}
-              addSong={addSong}
-              songId={id}
-              closeSelect={closeSelect}
-            />
           )}
-        </div>
-        {isFavorite ? (
-          <button onClick={() => unmakeFavorite(id)} className="add-to-button">
-            <AiFillCheckCircle className="add-to-button-icon" />
-          </button>
-        ) : (
-          <button onClick={() => makeFavorite(id)} className="add-to-button">
-            <IoMdHeart className="add-to-button-icon" />
-          </button>
-        )}
+        </button>
       </div>
     </div>
   );
