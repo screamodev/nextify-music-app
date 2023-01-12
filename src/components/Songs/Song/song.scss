@@ -1,0 +1,43 @@
+@mixin song-info-default($color) {
+  @apply p-2 w-1/2 flex items-center overflow-hidden text-#{$color};
+}
+
+.song {
+  @apply flex my-2 w-full;
+
+  .play-button {
+    @apply p-2 text-gray-200 hover:text-white duration-200;
+
+    .play-button-icon {
+      @apply h-8 w-8;
+    }
+  }
+
+  .song-info {
+    @include song-info-default("white");
+  }
+
+  .song-info-active {
+    @include song-info-default("primary");
+  }
+
+  .song-duration {
+    @apply p-4 flex items-center;
+  }
+
+  .song-add-buttons {
+    @apply flex;
+
+    .song-add-button-with-dropdown {
+      @apply flex items-center relative;
+    }
+
+    .add-to-button {
+      @apply p-1;
+
+      .add-to-button-icon {
+        @apply h-6 w-6 text-white;
+      }
+    }
+  }
+}

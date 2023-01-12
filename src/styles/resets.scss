@@ -1,0 +1,27 @@
+html {
+  @apply h-full;
+}
+
+body {
+  @apply h-full font-playfair-display;
+}
+
+#root {
+  @apply h-full;
+}
+
+::-webkit-scrollbar {
+  @apply w-2;
+}
+
+::-webkit-scrollbar-track {
+  @apply bg-black;
+}
+
+::-webkit-scrollbar-thumb {
+  @apply bg-neutral-800;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  @apply bg-neutral-500;
+}

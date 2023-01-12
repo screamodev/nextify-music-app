@@ -1,0 +1,23 @@
+@mixin input-border($color) {
+  @apply leading-8 text-black border-solid mb-3 border-b-4 border-black rounded-lg outline-none text-left p-1 focus:#{$color};
+}
+
+.form-input-block {
+  @apply relative flex flex-col mb-2;
+
+  .form-input {
+    @include input-border("border-secondary");
+  }
+
+  .error {
+    @include input-border("border-red-700");
+  }
+
+  .error-message {
+    @apply text-red-700 font-bold text-center p-1 mb-1 border border-red-700;
+
+    @screen sm {
+      @apply absolute w-60 before:content-['▸'] before:absolute before:-right-2 before:bottom-0 before:text-red-700 bg-red-700 text-white font-bold text-center rounded-lg p-2 z-10 right-102per bottom-20per;
+    }
+  }
+}

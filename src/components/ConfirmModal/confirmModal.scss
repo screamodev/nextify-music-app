@@ -1,0 +1,7 @@
+.confirm-modal {
+  @apply p-3 w-full h-full rounded-xl text-center;
+
+  &-button {
+    @apply p-1 w-20 rounded-lg m-2 bg-primary last:bg-secondary hover:opacity-90 duration-300;
+  }
+}

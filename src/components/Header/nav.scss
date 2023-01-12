@@ -1,0 +1,11 @@
+.nav {
+  @apply flex justify-between p-4 bg-neutral-900;
+
+  .nav-logout-wrapper {
+    @apply p-2 rounded-lg bg-primary text-white flex;
+
+    .logout-button {
+      @apply font-bold text-sm;
+    }
+  }
+}

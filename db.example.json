@@ -1,0 +1,171 @@
+{
+  "users": [
+    {
+      "email": "arsenii.iurchenko@gmail.com",
+      "password": "$2a$10$p1f.hd7D6ouK6R/q5wboBebmWQUYlPwSZDkm4xG9zvWpqWOM7vbW6",
+      "name": "arseniy",
+      "favoriteSongsIds": [5, 2, 1, 3, 4],
+      "id": 1
+    },
+    {
+      "email": "screamoviolence89@gmail.com",
+      "password": "$2a$10$S4cGDhU0shT2t94tEZh5beAj4kvAjX1e/hIotoyOqKrRj1/kULLpW",
+      "name": "Sergay",
+      "favoriteSongsIds": [4],
+      "id": 2
+    },
+    {
+      "email": "screamoviolence389@gmail.com",
+      "password": "$2a$10$1mZE7LnnDVo5PKE3EIPQ3ePCs7KMqzcODAWIF/8Dp9rjy3hT2/vpm",
+      "name": "Sergay",
+      "favoriteSongsIds": [],
+      "id": 3
+    }
+  ],
+  "songs": [
+    {
+      "id": 1,
+      "name": "Ukulele",
+      "author": "B",
+      "duration": "2:26",
+      "url": "https://www.bensound.com/bensound-music/bensound-ukulele.mp3"
+    },
+    {
+      "id": 2,
+      "name": "A new beginning",
+      "author": "A",
+      "duration": "2:34",
+      "url": "https://www.bensound.com/bensound-music/bensound-anewbeginning.mp3"
+    },
+    {
+      "id": 3,
+      "name": "Jazzy Frenchy",
+      "author": "C",
+      "duration": "1:44",
+      "url": "https://www.bensound.com/bensound-music/bensound-jazzyfrenchy.mp3"
+    },
+    {
+      "id": 4,
+      "name": "Happy rock",
+      "author": "D",
+      "duration": "1:45",
+      "url": "https://www.bensound.com/bensound-music/bensound-happyrock.mp3"
+    },
+    {
+      "id": 5,
+      "name": "Hey!",
+      "author": "123",
+      "duration": "2:52",
+      "url": "https://www.bensound.com/bensound-music/bensound-hey.mp3"
+    },
+    {
+      "id": 6,
+      "name": "Memories",
+      "author": "234",
+      "duration": "3:50",
+      "url": "https://www.bensound.com/bensound-music/bensound-memories.mp3"
+    },
+    {
+      "id": 7,
+      "name": "Acoustic Breeze",
+      "author": "Z",
+      "duration": "2:37",
+      "url": "https://z2.fm/download/28611172"
+    },
+    {
+      "id": 8,
+      "name": "Going Higher",
+      "author": "B",
+      "duration": "4:04",
+      "url": "https://www.bensound.com/bensound-music/bensound-goinghigher.mp3"
+    },
+    {
+      "id": 9,
+      "name": "Bella Ciao",
+      "author": "italian rezistensia",
+      "duration": "2:52",
+      "url": "https://sefon.pro/api/mp3_download/direct/110849/3vUCAAjjI9_0SM3G2SR3DAownUcb_lk8NWfv-xjIVLM-H2UTVO4VYshuEqmwfLT6ueRetMs_p4n8JS2SYwUBCnxd2F--GTfHJPgIsByJ5YwoE_UFv8pnaNkPov1QzsEOIRka0ZgMvjdCBsH0fjfqpSYfzFKxoFMdQJ2fGQ/"
+    },
+    {
+      "id": 10,
+      "name": "Slava Ukraine!",
+      "author": "Geroyam Slava!",
+      "duration": "3:29",
+      "url": "https://dl.zamp3.net/files/track/2022/03/sergij-babkin-ya-soldat-2022-version.mp3"
+    }
+  ],
+  "playlists": [
+    {
+      "name": "Reggae",
+      "description": "",
+      "songsIds": [1, 3, 5, 6],
+      "date": 1647024012757,
+      "userId": 1,
+      "id": 1
+    },
+    {
+      "name": "Rock",
+      "description": "",
+      "songsIds": [],
+      "date": 1648042678306,
+      "userId": 1,
+      "id": 2
+    },
+    {
+      "name": "Rock",
+      "description": "",
+      "songsIds": [],
+      "date": 1648110465430,
+      "userId": 1,
+      "id": 3
+    },
+    {
+      "name": "Metal",
+      "description": "",
+      "songsIds": [],
+      "date": 1648110468719,
+      "userId": 1,
+      "id": 4
+    },
+    {
+      "name": "Pop",
+      "description": "",
+      "songsIds": [],
+      "date": 1648110470837,
+      "userId": 1,
+      "id": 5
+    },
+    {
+      "name": "Rock",
+      "description": "",
+      "songsIds": [1, 3, 4],
+      "date": 1648136052492,
+      "userId": 2,
+      "id": 6
+    },
+    {
+      "name": "Reggaeqqq",
+      "description": "",
+      "songsIds": [1],
+      "date": 1648136057194,
+      "userId": 2,
+      "id": 7
+    },
+    {
+      "name": "Roxk",
+      "description": "",
+      "songsIds": [],
+      "date": 1648136060706,
+      "userId": 2,
+      "id": 8
+    },
+    {
+      "name": "aadaaadaaadaaadaaadaaadaaadaaadaaadaaadaaadaaada",
+      "description": "ccccaadaaadaaadaaadaaadaaadaaadaaadaaadaaadaaadaaadaaadaaadaaadaaadaaadaaadaaadaaadaaadaaadaaadaaadaaadaaadaaadaaadaaadaaadaaadaaadaaadaaadaaadaaadaaadaaadaaadaaadaaadaaadaaadaaadaaadaaadaaadaaadaaadaaadaaadaaadaaadaaadaaadaaadaaadaaadaaadaaadaaadaaadaaadaaadaaadaaadaaadaaadaaadaaadaaadaaadaaadaaadaaadaaadaaadaaadaaadaaadaaadaaadaaadaaadaaadaaadaaadaaadaaadaaadaaadaaadaaadaaadaaadaaadaaadaaadaaadaaadaaadaaadaaadaaadaaadaaadaaadaaadaaadaaadaaadaaadaaadaaadaaadaaadaaadaaadaaadaaadaaadaaadaaadaaadaaadaaadaaadaaadaaadaaadaaadaaadaaadaaadaaadaaadaaadaaadaaadaaadaaadaaadaaadaaadaaadaaadaaadaaadaaadaaadaaadaaadaaadaaadaaadaaadaaadaaadaaadaaadaaadaaadaaadaaadaaadaaadaaadaaadaaadaaadaaadaaadaaadaaadaaadaaadaaadaaadaaadaaadaaadaaadaaadaaadaaadaaadaaadaaadaaadaaadaaadaaadaaadaaadaaadaaadaaadaaadaaadaaadaaadaaadaaadaaadaaadaaadaaadaaadaaadaaadaaadaaadaaadaaadaaadaaadaaadaaadaaadaaadaaadaaadaaadaaadaaadaaadaaadaaadaaadaaadaaadaaadaaadaaadaaadaaadaaadaaadaaadaaadaaadaaadaaadaaadaaadaaadaaadaaadaaadaaadaaadaaadaaadaaadaaadaaadaaadaaadaaadaaadaaadaaadaaadaaadaaadaaadaaadaaadaaadaaadaaadaaadaaadaaadaaadaaadaaadaaadaaadaaadaaadaaadaaadaaadaaadaaadaaadaaadaaadaaadaaadaaadaaadaaadaaadaaadaaadaaadaaadaaadaaadaaadaaadaaadaaadaaadaaadaaadaaadaaadaaadaaadaaadaaadaaadaaadaaadaaadaaadaaadaaadaaadaaadaaadaaadaaadaaadaaadaaadaaadaaadaaadaaadaaadaaadaaadaaadaaadaaadaaadaaadaaadaaadaaadaaadaaadaaadaaadaaadaaadaaadaaadaaadaaadaaadaaadaaadaaadaaadaaadaaadaaadaaadaaadaaadaaadaaadaaadaaadaaadaaadaaadaaadaaadaaadaaadaaadaaadaaadaaadaaadaaadaaadaaadaaadaaadaaadaaadaaadaaadaaadaaadaaadaaadaaadaaadaaadaaadaaadaaadaaadaaadaaadaaadaaadaaadaaadaaadaaadaaadaaadaaadaaadaaadaaadaaadaaadaaadaaadaaadaaadaaadaaadaaadaaadaaadaaadaaadaaadaaadaaadaaadaaadaaadaaadaaadaaadaaadaaadaaadaaadaaadaaadaaadaaadaaadaaadaaadaaadaaadaaadaaadaaadaaadaaadaaadaaadaaadaaadaaadaaadaaadaaadaaadaaadaaadaaadaaadaaadaaadaaadaaadaaadaaadaaadaaadaaadaaadaaadaaadaaadaaadaaadaaadaaadaaadaaadaaadaaadaaadaaadaaada",
+      "songsIds": [],
+      "date": 1650377424566,
+      "userId": 2,
+      "id": 9
+    }
+  ]
+}

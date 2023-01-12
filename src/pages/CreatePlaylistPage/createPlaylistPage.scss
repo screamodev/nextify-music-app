@@ -1,0 +1,75 @@
+.create-playlist-wrapper {
+  @apply flex text-white flex-col h-[calc(100vh-8.188rem)] text-xl p-1 w-full self-center bg-secondary-opacity overflow-y-auto;
+
+  .create-playlist-content {
+    @apply flex flex-col justify-center w-full self-center;
+
+    @screen lg {
+      @apply flex flex-row justify-center w-full self-center;
+    }
+
+    .playlist-photo {
+      @apply flex p-4 flex-col items-center;
+
+      @screen lg {
+        @apply items-start;
+      }
+
+      .playlist-photo-holder {
+        @apply h-52 w-52 border-2 border-secondary mb-2 bg-neutral-900;
+      }
+
+      .playlist-upload-photo-button {
+        @apply p-2 bg-secondary rounded-lg w-1/2;
+
+        @screen lg {
+          @apply w-full;
+        }
+      }
+    }
+
+    .playlist-form {
+      @apply flex text-white flex-col items-center justify-center p-2;
+    }
+  }
+
+  .playlist-button {
+    @apply flex flex-col items-center;
+
+    .create-playlist-button {
+      @apply p-2 bg-primary rounded-lg;
+    }
+  }
+
+  .playlists-list-holder {
+    @apply flex flex-col items-center;
+
+    .playlists-list-title {
+      @apply text-2xl m-4;
+    }
+  }
+
+  .playlist-cards {
+    @apply flex items-center justify-center bg-secondary-opacity p-2 flex-wrap;
+
+    @screen lg {
+      @apply max-w-50per;
+    }
+
+    .playlist-card {
+      @apply flex border-2 m-4 w-48 h-48 p-6 relative cursor-pointer hover:scale-95 hover:border-secondary duration-300;
+
+      &-img {
+        @apply absolute top-0 left-0;
+      }
+
+      &-text {
+        @apply text-ellipsis overflow-hidden z-10 self-end;
+      }
+    }
+  }
+
+  .error-message {
+    @apply bg-red-700 text-white font-bold text-center rounded-lg p-2 mb-1;
+  }
+}

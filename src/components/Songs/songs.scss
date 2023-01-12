@@ -1,0 +1,7 @@
+.songs {
+  @apply flex flex-col z-10;
+
+  &-not-found {
+    @apply text-center;
+  }
+}

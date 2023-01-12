@@ -1,0 +1,23 @@
+.registration-modal-header {
+  @apply flex justify-between mb-10;
+
+  .registration-modal-heading {
+    @apply text-3xl;
+  }
+
+  .registration-modal-heading-icon {
+    @apply text-3xl cursor-pointer;
+  }
+}
+
+.registration-modal-form {
+  @apply flex flex-col;
+
+  .registration-form-button {
+    @apply text-lg my-4 p-4 bg-secondary rounded-lg;
+  }
+
+  .submit-error-message {
+    @apply bg-red-700 text-white font-bold text-center rounded-lg p-2 mb-1;
+  }
+}

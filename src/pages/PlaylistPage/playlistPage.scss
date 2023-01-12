@@ -1,0 +1,105 @@
+.playlist-wrapper {
+  @apply flex text-white flex-col h-[calc(100vh-8.188rem)] text-xl p-1 w-full self-center bg-secondary-opacity overflow-y-auto;
+
+  .playlist-content {
+    @apply w-full self-center;
+
+    @screen lg {
+      @apply p-3 w-2/3 text-lg;
+    }
+
+    .playlist-info-block {
+      @apply flex flex-col items-center;
+
+      @screen sm {
+        @apply flex-row items-start;
+      }
+
+      .playlist-photo-holder {
+        @apply flex flex-col items-center m-1;
+
+        .playlist-photo {
+          @apply h-52 w-52 mb-4 border-secondary border-2 bg-neutral-900;
+        }
+
+        .playlist-upload-photo-button {
+          @apply p-2 bg-secondary rounded-lg w-1/2;
+
+          @screen lg {
+            @apply w-full;
+          }
+        }
+      }
+
+      .playlist-info-holder {
+        @apply flex flex-col m-2 min-w-min;
+
+        .playlist-info {
+          @apply relative flex flex-col justify-around;
+
+          .playlist-info-text {
+            @apply text-lg m-4 first:text-3xl text-ellipsis overflow-hidden;
+          }
+
+          .set-edit-button {
+            @apply p-1 rounded-lg absolute top-4 right-44;
+
+            @screen sm {
+              @apply left-44;
+            }
+
+            .set-edit-button-icon {
+              @apply h-6 w-6;
+            }
+          }
+        }
+      }
+
+      .delete-playlist-block {
+        @apply w-full flex flex-col items-center p-4;
+
+        @screen sm {
+          @apply items-end;
+        }
+
+        &-delete-button {
+          @apply p-2 bg-primary rounded-lg hover:opacity-90 duration-700;
+        }
+      }
+    }
+
+    .playlist-songs {
+      @apply flex flex-col mx-3;
+
+      @screen lg {
+        @apply flex flex-col;
+      }
+
+      .playlist-songs-list {
+        .playlist-song-delete {
+          @apply flex;
+
+          &-button-block {
+            @apply flex;
+
+            .playlist-song-delete-button {
+              @apply p-1;
+
+              &-icon {
+                @apply h-6 w-6 text-white;
+              }
+            }
+          }
+        }
+      }
+    }
+
+    .playlist-empty {
+      @apply flex justify-center;
+    }
+
+    .error-message {
+      @apply text-red-700 font-bold text-center p-1 mb-1 border border-red-700;
+    }
+  }
+}

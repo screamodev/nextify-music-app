@@ -1,0 +1,35 @@
+.search-wrapper {
+  @apply flex text-white flex-col h-[calc(100vh-8.188rem)] text-xl p-1 w-full self-center bg-secondary-opacity overflow-y-auto;
+
+  .search-wrapper-content {
+    @apply w-full self-center;
+
+    @screen lg {
+      @apply p-2 w-2/3 text-lg;
+    }
+  }
+
+  .search-input-block {
+    @apply p-2 flex justify-center relative;
+
+    .search-input {
+      @apply w-2/3 leading-7 text-black border-solid border-b-4 border-black rounded-lg outline-none text-left p-1 focus:border-secondary;
+
+      @screen lg {
+        @apply w-1/3;
+      }
+    }
+
+    .search-input-button {
+      @apply absolute top-35per right-20per;
+
+      @screen lg {
+        @apply right-35per;
+      }
+
+      .search-input-button-icon {
+        @apply text-black;
+      }
+    }
+  }
+}

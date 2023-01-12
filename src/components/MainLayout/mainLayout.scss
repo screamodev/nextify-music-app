@@ -1,0 +1,23 @@
+.main-content {
+  @apply flex flex-col w-full;
+}
+
+.wrapper-main {
+  @apply flex grow shrink-0 basis-auto bg-[url('../../assets/images/background-free-image.jpg')] bg-cover;
+}
+
+.nav-item {
+  @apply hover:text-white;
+}
+
+.bm-burger-button {
+  @apply fixed w-7 h-5 left-6 top-6;
+}
+
+.bm-burger-bars {
+  @apply bg-gray-300;
+}
+
+.bm-cross {
+  @apply bg-white;
+}

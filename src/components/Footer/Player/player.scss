@@ -1,0 +1,66 @@
+.player {
+  @apply h-full flex justify-between items-center px-5 relative;
+
+  &-music-info {
+    @apply h-full flex flex-col w-2/6 overflow-hidden;
+
+    .player-current-music-info {
+      @apply first:text-white last:text-gray-300 last:text-lg;
+    }
+  }
+
+  &-controls {
+    @apply flex flex-col w-2/6;
+
+    .controls-buttons {
+      @apply flex justify-center;
+
+      .controls-switch-button {
+        @apply text-white disabled:text-gray-600;
+
+        .controls-switch-button-icon {
+          @apply h-8 w-8;
+        }
+      }
+    }
+
+    .controls-progress-bar-holder {
+      @apply flex text-white items-center justify-center text-xs;
+
+      .controls-progress-bar {
+        @apply w-60 h-1 mx-2 placeholder-red-300;
+      }
+    }
+  }
+
+  .play-toggle-button-icon {
+    @apply h-8 w-8 text-white;
+  }
+
+  .side-buttons {
+    @apply flex justify-end w-1/3;
+
+    &-volume {
+      @apply flex w-0 mx-2 items-center justify-center invisible;
+
+      @screen sm {
+        @apply visible w-40;
+      }
+      &-control {
+        @apply h-8 w-8 text-white w-36;
+      }
+    }
+  }
+}
+
+.side-buttons-button {
+  @apply mx-2;
+
+  &-icon {
+    @apply w-8 h-8 text-white;
+  }
+}
+
+.volume-button-icon {
+  @apply h-8 w-10 text-white;
+}

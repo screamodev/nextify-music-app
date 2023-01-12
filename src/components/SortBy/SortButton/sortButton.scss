@@ -1,0 +1,19 @@
+@mixin sort-by-default($color) {
+  @apply p-1 pr-6 bg-#{$color} rounded-lg text-white font-bold relative;
+}
+
+.sort-by-active {
+  @include sort-by-default("primary");
+
+  .stop-sort {
+    @apply w-5 h-5 self-center bg-black text-primary font-bold rounded-full absolute bottom-7 right-m10px;
+  }
+
+  .sort-order-arrow {
+    @apply w-7 h-7 absolute top-1 right-0;
+  }
+}
+
+.sort-by-default {
+  @include sort-by-default("transparent");
+}

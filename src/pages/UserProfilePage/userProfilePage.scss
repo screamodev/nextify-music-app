@@ -1,0 +1,79 @@
+.profile-wrapper {
+  @apply flex text-white flex-col h-[calc(100vh-8.188rem)] text-xl p-1 w-full self-center bg-secondary-opacity overflow-y-auto;
+
+  .profile-content {
+    @apply flex flex-col justify-center w-full self-center;
+
+    @screen sm {
+      @apply flex-row;
+    }
+
+    @screen lg {
+      @apply flex justify-center w-full self-center;
+    }
+
+    .profile-photo {
+      @apply flex p-2 flex-col items-center;
+
+      @screen lg {
+        @apply flex p-2 flex-col items-start;
+      }
+
+      &-holder {
+        @apply h-56 w-56 border-2 rounded-full border-secondary mb-2 bg-white;
+
+        .profile-photo-img {
+          @apply rounded-full shadow-2xl;
+        }
+      }
+
+      .profile-upload-photo-button {
+        @apply p-2 bg-secondary w-1/2;
+
+        @screen lg {
+          @apply w-full;
+        }
+      }
+    }
+
+    .profile-info-holder {
+      @apply flex flex-col m-2;
+
+      .profile-info {
+        @apply relative flex flex-col justify-around;
+
+        .profile-info-text {
+          @apply text-lg m-4 max-h-20 text-ellipsis overflow-hidden text-3xl first:text-6xl last:text-2xl;
+        }
+      }
+    }
+  }
+
+  .playlists-list {
+    @apply flex flex-col items-center;
+
+    &-title {
+      @apply text-2xl m-4;
+    }
+  }
+
+  .playlist-cards {
+    @apply flex items-center justify-center bg-secondary-opacity p-2 flex-wrap;
+
+    @screen lg {
+      @apply max-w-50per;
+    }
+
+    .playlist-card {
+      @apply flex border-2 m-4 w-48 h-48 p-6 relative cursor-pointer hover:scale-95 hover:border-secondary duration-300;
+
+      &-img {
+        @apply absolute top-0 left-0;
+      }
+
+      &-text {
+        @apply text-ellipsis overflow-hidden z-10 self-end;
+      }
+    }
+  }
+}

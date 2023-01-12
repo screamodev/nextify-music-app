@@ -1,0 +1,7 @@
+.app-wrapper {
+  @apply h-full;
+}
+
+.app-wrapper-content {
+  @apply flex flex-col h-full overflow-hidden;
+}

@@ -1,0 +1,19 @@
+.queue {
+  @apply absolute overflow-auto w-full right-0 bottom-60px bg-neutral-900 border rounded-lg border-secondary h-[calc(100vh-8.188rem)] p-6 flex text-white shadow-2xl flex-col;
+
+  @screen lg {
+    @apply w-1/3;
+  }
+
+  &-heading {
+    @apply flex justify-between mb-20;
+
+    &-text {
+      @apply text-2xl;
+    }
+
+    .queue-close-button-icon {
+      @apply w-8 h-8;
+    }
+  }
+}
