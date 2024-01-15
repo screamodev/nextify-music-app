@@ -15,15 +15,4 @@ run app
 npm run start
 ```
 
-
-```bash
-https://react-nextify.herokuapp.com/
-```
-
-test credentials
-
-```bash
-email: test@gmail.com
-password: qwerty
-```
 ![image.png](./image.png)
